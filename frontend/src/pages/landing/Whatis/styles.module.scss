@@ -1,0 +1,29 @@
+.wrapper {
+    margin-bottom: 100px;
+}
+
+.card {
+    width: 100%;
+    background-color: #e9f4fe;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 30px;
+
+    h2 {
+        font-size: 36px;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+        span {
+            color: #007df0;
+        }
+    }
+
+    p {
+        opacity: 0.7;
+        font-size: 18px;
+        line-height: 209%;
+        max-width: 1000px;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
+}

@@ -1,0 +1,64 @@
+.card {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+
+    h1 {
+        font-weight: 500;
+        font-size: 24px;
+        color: #222222;
+        margin-top: 0;
+    }
+
+    .gray {
+        color: #8f8f8f;
+        font-size: 14px;
+        margin-top: 0px;
+    }
+
+    .rating {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+
+        svg {
+            fill: #8f8f8f;
+        }
+        svg.rated {
+            fill: #ffc700;
+        }
+
+        span {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        h2 {
+            font-size: 18px;
+            font-weight: 400;
+        }
+    }
+}
+
+.cta {
+    height: 40px;
+    background-color: #4770ff;
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: #fff;
+    text-align: center;
+    border: none;
+    font-weight: normal;
+    margin-top: 30px;
+
+    &:hover {
+        background-color: #3559dd;
+    }
+}

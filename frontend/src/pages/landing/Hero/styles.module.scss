@@ -1,0 +1,40 @@
+.container {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 5fr 4fr;
+    padding-bottom: 150px;
+}
+
+.heading {
+    margin-top: 150px;
+    font-weight: 700;
+    font-size: 96px;
+    span {
+        color: #007df0;
+    }
+}
+
+.text {
+    font-size: 18px;
+    opacity: 0.7;
+    line-height: 200%;
+    margin: 37px 0;
+}
+
+.button {
+    border: none;
+    background-color: #007df0;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 33px;
+
+    padding: 21px 75px;
+}
+
+.right {
+    margin-top: 100px;
+
+    img {
+        width: 100%;
+    }
+}

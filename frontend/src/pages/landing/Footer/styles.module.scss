@@ -1,0 +1,21 @@
+.wrapper {
+    background-color: #007df0;
+    color: #fff;
+    padding: 54px 0 200px 0;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+        ul {
+            display: flex;
+            gap: 50px;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+    }
+}

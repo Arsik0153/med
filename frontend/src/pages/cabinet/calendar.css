@@ -1,0 +1,38 @@
+.full-calendar input,
+.full-calendar button {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.full-calendar header {
+    background-color: #323639;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    color: white;
+}
+
+.full-calendar header h1 {
+    font-size: inherit;
+    margin: 0;
+}
+
+
+.full-calendar .react-calendar {
+    margin: 0 auto;
+    width: 100%;
+    background: unset;
+    border: unset;
+}
+
+.react-calendar__tile--now {
+    border: 1px solid #007DF0 !important;
+    background: none;
+}
+
+.react-calendar__tile--now:hover {
+    background-color: #007DF0 !important;
+    color: #fff;
+}
+
+.react-calendar__tile--active {
+    color: #000 !important;
+}

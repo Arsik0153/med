@@ -1,0 +1,62 @@
+.wrapper {
+}
+
+.title {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+
+    span {
+        color: #0558a5;
+    }
+}
+
+.card {
+    background: #fafcff;
+    box-shadow: 0px 10px 90px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+
+    .left {
+        padding: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+
+        .circle {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #82aff3;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+    }
+
+    .right {
+        background-color: #e1e8ec;
+        padding: 0 50px;
+    }
+}
+
+.appointments {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+
+    .appointment {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+}

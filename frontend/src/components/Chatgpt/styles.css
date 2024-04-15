@@ -1,0 +1,33 @@
+.cs-message-input__content-editor {
+    background-color: #fff !important;
+}
+
+.cs-message-input__content-editor-wrapper {
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    background-color: #fff;
+}
+
+.cs-main-container {
+    border-radius: 20px !important;
+}
+
+.chatbot-container {
+    width: 90px;
+    height: 90px;
+    border: none;
+    border-radius: 100%;
+    background-color: #007DF0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatbot-container img {
+    width: 50px;
+    height: 50px;
+}
+
+.cs-conversation-header {
+    background-color: #007DF0;
+}
