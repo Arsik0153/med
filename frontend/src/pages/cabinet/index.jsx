@@ -1,24 +1,22 @@
-import Layout from "@components/Layout";
-import styles from "./styles.module.scss";
-import { useUser } from "../../api/useUser";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-import "./calendar.css";
-import { useEffect, useState } from "react";
-import { api } from "../../api/api";
-import { useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
-import ChatGPT from "../../components/Chatgpt";
+import Layout from '@components/Layout';
+import styles from './styles.module.scss';
+import { useUser } from '../../api/useUser';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './calendar.css';
+import { useEffect, useState } from 'react';
+import { api } from '../../api/api';
+import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import ChatGPT from '../../components/Chatgpt';
 
 const fetchAppointments = async (date) => {
     try {
-        const { data } = await api.get(
-            `/appointments/date/${date.toISOString()}`
-        );
+        const { data } = await api.get(`/appointments/date/${date}`);
         return data;
     } catch (error) {
-        console.error("Error fetching appointments:", error);
+        console.error('Error fetching appointments:', error);
         throw error;
     }
 };
@@ -26,20 +24,25 @@ const fetchAppointments = async (date) => {
 const Cabinet = () => {
     const [user] = useUser();
     const [currentDate, setCurrentDate] = useState(new Date());
+    // console.log('currentDate', currentDate);
     const { data: appointments, refetch } = useQuery({
-        queryKey: ["appointments", currentDate],
+        queryKey: ['appointments', currentDate],
         queryFn: () => fetchAppointments(currentDate),
 
         onSuccess: (data) => {
-            console.log("Appointments fetched!", data);
+            console.log('Appointments fetched!', data);
         },
         onError: () => {
-            toast.error("Error occurred while getting appointments!");
+            toast.error('Error occurred while getting appointments!');
         },
     });
 
     const handleDateChange = (date) => {
-        setCurrentDate(date);
+        let tzoffset = new Date().getTimezoneOffset() * 60000;
+        let localISOTime = new Date(date.getTime() - tzoffset)
+            .toISOString()
+            .slice(0, -1);
+        setCurrentDate(localISOTime);
     };
 
     useEffect(() => {
@@ -66,7 +69,7 @@ const Cabinet = () => {
                     <div className={styles.circle}>Monitoring</div>
                 </div>
                 <div className={`${styles.right} full-calendar`}>
-                    <h1 style={{ textAlign: "center", marginBottom: 30 }}>
+                    <h1 style={{ textAlign: 'center', marginBottom: 30 }}>
                         Calendar
                     </h1>
                     <Calendar
@@ -85,8 +88,8 @@ const Cabinet = () => {
                                     {new Date(
                                         appointment.date
                                     ).toLocaleTimeString([], {
-                                        hour: "2-digit",
-                                        minute: "2-digit",
+                                        hour: '2-digit',
+                                        minute: '2-digit',
                                     })}
                                 </h3>
                                 <p>{appointment.doctor.name}</p>
