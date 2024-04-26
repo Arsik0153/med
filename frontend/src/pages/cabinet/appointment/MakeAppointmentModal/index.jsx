@@ -1,31 +1,30 @@
-import { useEffect, useState } from "react";
-import styles from "./styles.module.scss";
-import InputMask from "react-input-mask";
-import { toast } from "react-hot-toast";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { api } from "../../../../api/api";
-import { delay } from "../../../../utils/delay";
-import { useUser } from "../../../../api/useUser";
-import ClipLoader from "react-spinners/ClipLoader";
+import { useEffect, useState } from 'react';
+import styles from './styles.module.scss';
+import InputMask from 'react-input-mask';
+import { toast } from 'react-hot-toast';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { api } from '../../../../api/api';
+import { useUser } from '../../../../api/useUser';
+import ClipLoader from 'react-spinners/ClipLoader';
 
-const fetchSpecialists = async (specializationType) => {
+const fetchSpecialists = async (specializationType, clinicId) => {
     try {
         const { data } = await api.get(
-            `/doctors?specializationType=${specializationType}`
+            `/doctors?specializationType=${specializationType}&clinicId=${clinicId}`
         );
         return data;
     } catch (error) {
-        console.error("Error fetching specialists:", error);
+        console.error('Error fetching specialists:', error);
         throw error;
     }
 };
 
 const createAppointment = async (appointmentData) => {
     try {
-        const response = await api.post("/appointments", appointmentData);
+        const response = await api.post('/appointments', appointmentData);
         return response;
     } catch (error) {
-        console.error("Error creating appointment:", error);
+        console.error('Error creating appointment:', error);
         throw error;
     }
 };
@@ -35,7 +34,7 @@ const updateUser = async (userData) => {
         const response = await api.put(`/users/${userData.id}`, userData);
         return response;
     } catch (error) {
-        console.error("Error updating user:", error);
+        console.error('Error updating user:', error);
         throw error;
     }
 };
@@ -46,19 +45,20 @@ const MakeAppointmentModal = (props) => {
     const [stepLimit, setStepLimit] = useState(1);
     const [user] = useUser();
     const [formData, setFormData] = useState({
-        iin: "",
-        phone: "",
-        format: "",
-        specialist_type: "0",
-        specialist: "",
-        date: "",
-        time: "",
+        iin: '',
+        phone: '',
+        format: '',
+        specialist_type: '0',
+        specialist: '',
+        date: '',
+        time: '',
     });
 
     const { data: specialists } = useQuery({
-        queryKey: ["specialists", formData.specialist_type],
-        queryFn: async () => fetchSpecialists(formData.specialist_type),
-        enabled: !!formData.specialist_type && formData.specialist_type !== "0",
+        queryKey: ['specialists', formData.specialist_type],
+        queryFn: async () =>
+            fetchSpecialists(formData.specialist_type, clinicId),
+        enabled: !!formData.specialist_type && formData.specialist_type !== '0',
     });
 
     const {
@@ -67,11 +67,11 @@ const MakeAppointmentModal = (props) => {
     } = useMutation({
         mutationFn: createAppointment,
         onSuccess: () => {
-            toast.success("Appointment created!");
+            toast.success('Appointment created!');
             onClose();
         },
         onError: () => {
-            toast.error("Error occured while creating appointment!");
+            toast.error('Error occured while creating appointment!');
         },
     });
 
@@ -83,7 +83,7 @@ const MakeAppointmentModal = (props) => {
                 setStepLimit(step + 1);
             },
             onError: () => {
-                toast.error("Error occured while updating user!");
+                toast.error('Error occured while updating user!');
             },
         });
 
@@ -109,31 +109,31 @@ const MakeAppointmentModal = (props) => {
             if (
                 formData.iin.length !== 12 ||
                 formData.phone.length !== 18 ||
-                formData.format === ""
+                formData.format === ''
             ) {
-                toast.error("Please fill in all fields");
+                toast.error('Please fill in all fields');
                 return;
             }
 
             const userData = {
                 id: user.id,
                 iin: formData.iin,
-                phone: formData.phone,
+                phoneNumber: formData.phone,
             };
             updateUserMutation(userData);
             return;
         }
 
         if (step === 2) {
-            if (formData.specialist_type === "" || formData.specialist === "") {
-                toast.error("Please fill in all fields");
+            if (formData.specialist_type === '' || formData.specialist === '') {
+                toast.error('Please fill in all fields');
                 return;
             }
         }
 
         if (step === 3) {
-            if (formData.date === "" || formData.time === "") {
-                toast.error("Please fill in all fields");
+            if (formData.date === '' || formData.time === '') {
+                toast.error('Please fill in all fields');
                 return;
             }
             const dateTime = new Date(`${formData.date}T${formData.time}`);
@@ -310,7 +310,7 @@ const MakeAppointmentModal = (props) => {
                         {isAppointmentCreating || isUserUpdating ? (
                             <ClipLoader size={17} color="#fff" />
                         ) : (
-                            "Next"
+                            'Next'
                         )}
                     </button>
                 </div>

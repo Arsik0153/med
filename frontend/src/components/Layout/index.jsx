@@ -1,7 +1,7 @@
-import styles from "./styles.module.scss";
-import logoImg from "@assets/landing/logo.png";
-import { useUser } from "../../api/useUser";
-import { useNavigate } from "react-router-dom";
+import styles from './styles.module.scss';
+import logoImg from '@assets/landing/logo.png';
+import { useUser } from '../../api/useUser';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Layout = ({ children }) => {
     const [user] = useUser();
@@ -9,8 +9,8 @@ const Layout = ({ children }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        navigate("/");
+        localStorage.removeItem('token');
+        navigate('/');
     };
 
     if (!user) return null;
@@ -20,8 +20,10 @@ const Layout = ({ children }) => {
             <div className="container">
                 <header className={styles.header}>
                     <div className={styles.left}>
-                        <img src={logoImg} alt="" />
-                        <a href="">about us</a>
+                        <Link to="/cabinet">
+                            <img src={logoImg} alt="" />
+                        </Link>
+                        <Link to="/about-us">about us</Link>
                         <a href="">FAQ</a>
                         <a href="">subscription</a>
                     </div>

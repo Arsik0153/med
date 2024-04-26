@@ -3,16 +3,17 @@ import {
     createRoutesFromElements,
     RouterProvider,
     Route,
-} from "react-router-dom";
-import Cabinet from "./pages/cabinet";
-import Appointment from "./pages/cabinet/appointment";
-import LandingPage from "./pages/landing";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "react-hot-toast";
-import AuthenticatedRoutes from "./components/ProtectedRoute";
-import DoctorCabinet from "./pages/doctor/cabinet";
+} from 'react-router-dom';
+import Cabinet from './pages/cabinet';
+import Appointment from './pages/cabinet/appointment';
+import LandingPage from './pages/landing';
+import Login from './pages/login';
+import Signup from './pages/signup';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
+import AuthenticatedRoutes from './components/ProtectedRoute';
+import DoctorCabinet from './pages/doctor/cabinet';
+import AboutUsPage from './pages/cabinet/about-us';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />
                 <Route path="cabinet/appointment" element={<Appointment />} />
+                <Route path="about-us" element={<AboutUsPage />} />
             </Route>
             <Route element={<AuthenticatedRoutes />}>
                 <Route path="/cabinet" element={<Cabinet />} />

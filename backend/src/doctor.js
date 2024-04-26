@@ -1,19 +1,20 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
 
 const getDoctors = async (req, res) => {
     try {
-        const { specializationType } = req.query;
+        const { specializationType, clinicId } = req.query;
 
         let whereClause = {};
 
-        if (specializationType) {
+        if (specializationType && clinicId) {
             whereClause = {
                 specialization_type: {
                     contains: specializationType,
-                    mode: "insensitive",
+                    mode: 'insensitive',
                 },
+                clinicId: parseInt(clinicId),
             };
         }
 
@@ -37,7 +38,7 @@ const createDoctor = async (req, res) => {
 
         // Check if the clinicId is provided
         if (!clinicId) {
-            return res.status(400).json({ message: "clinicId is required" });
+            return res.status(400).json({ message: 'clinicId is required' });
         }
         const hashedPassword = await bcrypt.hash(password, 10);
 
