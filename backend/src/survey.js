@@ -1,8 +1,8 @@
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 //get all users
-const getSurveys = async (req, res) => {
+export const getSurveys = async (req, res) => {
     try {
         const surveys = await prisma.survey.findMany();
         res.status(200).json(surveys);
@@ -12,7 +12,7 @@ const getSurveys = async (req, res) => {
 };
 
 //get survey by id
-const getSurveyById = async (req, res) => {
+export const getSurveyById = async (req, res) => {
     try {
         const survey = await prisma.survey.findUnique({
             where: {
@@ -26,7 +26,7 @@ const getSurveyById = async (req, res) => {
 };
 
 //create survey result
-const createSurveyResult = async (req, res) => {
+export const createSurveyResult = async (req, res) => {
     try {
         const surveyResult = await prisma.survey.create({
             data: {
@@ -41,5 +41,3 @@ const createSurveyResult = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-
-module.exports = { createSurveyResult, getSurveyById, getSurveys };

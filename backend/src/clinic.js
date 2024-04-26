@@ -1,7 +1,7 @@
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-const createClinic = async (req, res) => {
+export const createClinic = async (req, res) => {
     try {
         const { name, address, phone } = req.body;
 
@@ -19,7 +19,7 @@ const createClinic = async (req, res) => {
     }
 };
 
-const getAllClinics = async (req, res) => {
+export const getAllClinics = async (req, res) => {
     try {
         const clinics = await prisma.clinic.findMany();
         res.status(200).json(clinics);
@@ -28,7 +28,7 @@ const getAllClinics = async (req, res) => {
     }
 };
 
-const getClinicById = async (req, res) => {
+export const getClinicById = async (req, res) => {
     try {
         const { id } = req.params;
         const clinic = await prisma.clinic.findUnique({
@@ -38,7 +38,7 @@ const getClinicById = async (req, res) => {
         });
 
         if (!clinic) {
-            return res.status(404).json({ message: "Clinic not found" });
+            return res.status(404).json({ message: 'Clinic not found' });
         }
 
         res.status(200).json(clinic);
@@ -47,7 +47,7 @@ const getClinicById = async (req, res) => {
     }
 };
 
-const deleteClinic = async (req, res) => {
+export const deleteClinic = async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -61,11 +61,4 @@ const deleteClinic = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
-
-module.exports = {
-    createClinic,
-    getAllClinics,
-    getClinicById,
-    deleteClinic,
 };

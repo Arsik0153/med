@@ -1,8 +1,9 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
-const bcrypt = require('bcryptjs');
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
-const getDoctors = async (req, res) => {
+const prisma = new PrismaClient();
+
+export const getDoctors = async (req, res) => {
     try {
         const { specializationType, clinicId } = req.query;
 
@@ -31,7 +32,7 @@ const getDoctors = async (req, res) => {
     }
 };
 
-const createDoctor = async (req, res) => {
+export const createDoctor = async (req, res) => {
     try {
         const { name, email, specialization_type, password, clinicId } =
             req.body;
@@ -65,7 +66,7 @@ const createDoctor = async (req, res) => {
     }
 };
 
-const getDoctorProfile = async (req, res) => {
+export const getDoctorProfile = async (req, res) => {
     try {
         const doctor = await prisma.doctor.findUnique({
             where: {
@@ -76,10 +77,4 @@ const getDoctorProfile = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
-
-module.exports = {
-    createDoctor,
-    getDoctors,
-    getDoctorProfile,
 };

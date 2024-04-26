@@ -1,8 +1,8 @@
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 // Get all appointments
-exports.getAllAppointments = async (req, res) => {
+export const getAllAppointments = async (req, res) => {
     try {
         const appointments = await prisma.appointment.findMany({
             include: {
@@ -18,7 +18,7 @@ exports.getAllAppointments = async (req, res) => {
 };
 
 // Get a single appointment
-exports.getAppointment = async (req, res) => {
+export const getAppointment = async (req, res) => {
     try {
         const { id } = req.params;
         const appointment = await prisma.appointment.findUnique({
@@ -30,7 +30,7 @@ exports.getAppointment = async (req, res) => {
             },
         });
         if (!appointment) {
-            return res.status(404).json({ error: "Appointment not found" });
+            return res.status(404).json({ error: 'Appointment not found' });
         }
         res.status(200).json(appointment);
     } catch (error) {
@@ -39,7 +39,7 @@ exports.getAppointment = async (req, res) => {
 };
 
 //get appointment by date
-exports.getAppointmentsByDate = async (req, res) => {
+export const getAppointmentsByDate = async (req, res) => {
     try {
         const { date } = req.params;
         const startDate = new Date(date);
@@ -71,7 +71,7 @@ exports.getAppointmentsByDate = async (req, res) => {
 };
 
 // Create a new appointment
-exports.createAppointment = async (req, res) => {
+export const createAppointment = async (req, res) => {
     try {
         const { doctorId, clinicId, patientId, date, format } = req.body;
         const appointment = await prisma.appointment.create({
@@ -90,7 +90,7 @@ exports.createAppointment = async (req, res) => {
 };
 
 // Update an appointment
-exports.updateAppointment = async (req, res) => {
+export const updateAppointment = async (req, res) => {
     try {
         const { id } = req.params;
         const { doctorId, clinicId, patientId, date, format } = req.body;
@@ -111,19 +111,19 @@ exports.updateAppointment = async (req, res) => {
 };
 
 // Delete an appointment
-exports.deleteAppointment = async (req, res) => {
+export const deleteAppointment = async (req, res) => {
     try {
         const { id } = req.params;
         await prisma.appointment.delete({
             where: { id: Number(id) },
         });
-        res.status(204).json({ message: "Appointment deleted" });
+        res.status(204).json({ message: 'Appointment deleted' });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-exports.getDoctorNextAppointments = async (req, res) => {
+export const getDoctorNextAppointments = async (req, res) => {
     try {
         const now = new Date();
 
@@ -139,7 +139,7 @@ exports.getDoctorNextAppointments = async (req, res) => {
                 patient: true,
             },
             orderBy: {
-                date: "asc",
+                date: 'asc',
             },
             take: 10,
         });
