@@ -15,6 +15,9 @@ const Footer = () => {
                     </div>
                     <div className={styles.right}>Contact us</div>
                 </div>
+                <div className={styles.top} style={{ marginTop: 50 }}>
+                    <div className={styles.left}>Copyright © 2024 IITU</div>
+                </div>
             </div>
         </div>
     );
