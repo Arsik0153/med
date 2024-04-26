@@ -36,6 +36,12 @@
             font-size: 18px;
             font-weight: 500;
         }
+
+        @media (max-width: 768px) {
+            & .innerLink {
+                display: none;
+            }
+        }
     }
 
     .right {

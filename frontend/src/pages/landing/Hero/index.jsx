@@ -1,6 +1,5 @@
-import React from "react";
-import styles from "./styles.module.scss";
-import heroImg from "@assets/landing/hero.png";
+import styles from './styles.module.scss';
+import heroImg from '@assets/landing/hero.png';
 
 const Hero = () => {
     return (

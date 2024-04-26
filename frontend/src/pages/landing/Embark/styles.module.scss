@@ -2,6 +2,10 @@
     margin-top: 100px;
     margin-bottom: 100px;
     display: flex;
+
+    @media screen and (max-width: 992px) {
+        flex-direction: column;
+    }
 }
 
 .right {
@@ -19,6 +23,10 @@
         span {
             color: #007df0;
         }
+
+        @media screen and (max-width: 992px) {
+            font-size: 48px;
+        }
     }
 
     p {
@@ -27,6 +35,11 @@
         font-size: 18px;
         letter-spacing: -0.05em;
         line-height: 209%;
+
+        @media screen and (max-width: 992px) {
+            font-size: 16px;
+            line-height: 180%;
+        }
     }
 
     button {
@@ -37,9 +50,26 @@
         border-radius: 33px;
         padding: 21px 75px;
         margin-top: 20px;
+
+        @media screen and (max-width: 992px) {
+            padding: 15px 50px;
+        }
     }
 }
 
 .left {
     padding-top: 250px;
+
+    img {
+        width: 100%;
+
+        @media screen and (max-width: 992px) {
+            padding-top: 50px;
+            width: 80%;
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        padding-top: 0;
+    }
 }

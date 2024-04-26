@@ -2,11 +2,16 @@
     background-color: #007df0;
     color: #fff;
     padding: 54px 0 200px 0;
+
+    @media (max-width: 768px) {
+        padding: 54px 0 100px 0;
+    }
 }
 
 .top {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .left {
         ul {
@@ -16,6 +21,20 @@
         a {
             text-decoration: none;
             color: #fff;
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+
+        .left {
+            ul {
+                flex-direction: column;
+                gap: 10px;
+                padding: 0;
+            }
         }
     }
 }

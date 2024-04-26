@@ -1,9 +1,8 @@
-import React from "react";
-import styles from "./styles.module.scss";
-import careImg from "@assets/landing/features/care.png";
-import graphImg from "@assets/landing/features/graph.png";
-import houseImg from "@assets/landing/features/house.png";
-import secureImg from "@assets/landing/features/secure.png";
+import styles from './styles.module.scss';
+import careImg from '@assets/landing/features/care.png';
+import graphImg from '@assets/landing/features/graph.png';
+import houseImg from '@assets/landing/features/house.png';
+import secureImg from '@assets/landing/features/secure.png';
 
 const Features = () => {
     return (

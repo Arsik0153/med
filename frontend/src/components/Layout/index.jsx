@@ -23,9 +23,15 @@ const Layout = ({ children }) => {
                         <Link to="/cabinet">
                             <img src={logoImg} alt="" />
                         </Link>
-                        <Link to="/about-us">about us</Link>
-                        <a href="">FAQ</a>
-                        <a href="">subscription</a>
+                        <Link to="/about-us" className={styles.innerLink}>
+                            about us
+                        </Link>
+                        <a href="" className={styles.innerLink}>
+                            FAQ
+                        </a>
+                        <a href="" className={styles.innerLink}>
+                            subscription
+                        </a>
                     </div>
                     <div className={styles.right} onClick={handleLogout}>
                         {user.name}

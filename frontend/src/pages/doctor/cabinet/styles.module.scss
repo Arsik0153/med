@@ -9,6 +9,10 @@
     span {
         color: #0558a5;
     }
+
+    @media (max-width: 768px) {
+        font-size: 30px;
+    }
 }
 
 .card {
@@ -19,8 +23,18 @@
     display: grid;
     grid-template-columns: 3fr 2fr;
 
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        margin-bottom: 100px;
+    }
+
     .left {
         padding: 20px 50px;
+
+        @media (max-width: 768px) {
+            gap: 30px;
+            padding: 20px 10px;
+        }
 
         .list {
             display: grid;

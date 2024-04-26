@@ -1,6 +1,5 @@
-import React from "react";
-import styles from "./styles.module.scss";
-import doctorImg from "@assets/landing/doctor.png";
+import styles from './styles.module.scss';
+import doctorImg from '@assets/landing/doctor.png';
 
 const Embark = () => {
     return (

@@ -1,15 +1,15 @@
-import styles from "./styles.module.scss";
-import logoImg from "@assets/landing/logo.png";
-import { useDoctor } from "../../api/useDoctor";
-import { useNavigate } from "react-router-dom";
+import styles from './styles.module.scss';
+import logoImg from '@assets/landing/logo.png';
+import { useDoctor } from '../../api/useDoctor';
+import { useNavigate } from 'react-router-dom';
 
 const Layout = ({ children }) => {
     const [user] = useDoctor();
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        navigate("/");
+        localStorage.removeItem('token');
+        navigate('/');
     };
 
     if (!user) return null;
@@ -20,9 +20,15 @@ const Layout = ({ children }) => {
                 <header className={styles.header}>
                     <div className={styles.left}>
                         <img src={logoImg} alt="" />
-                        <a href="">Main</a>
-                        <a href="">Profile</a>
-                        <a href="">Articles</a>
+                        <a href="" className={styles.innerLink}>
+                            Main
+                        </a>
+                        <a href="" className={styles.innerLink}>
+                            Profile
+                        </a>
+                        <a href="" className={styles.innerLink}>
+                            Articles
+                        </a>
                     </div>
                     <div className={styles.right} onClick={handleLogout}>
                         <div className={styles.profile}>
