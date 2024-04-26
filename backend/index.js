@@ -1,51 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
-
-import AdminJS from 'adminjs';
-import AdminJSExpress from '@adminjs/express';
-import { Database, Resource, getModelByName } from '@adminjs/prisma';
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import { authMiddleware } from './src/utils/authMiddleware.js';
+import admin, { adminRouter } from './admin.js';
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-AdminJS.registerAdapter({ Database, Resource });
-
-const adminOptions = {
-    resources: [
-        {
-            resource: { model: getModelByName('User'), client: prisma },
-            options: {},
-        },
-        {
-            resource: { model: getModelByName('Survey'), client: prisma },
-            options: {},
-        },
-        {
-            resource: { model: getModelByName('Doctor'), client: prisma },
-            options: {},
-        },
-        {
-            resource: { model: getModelByName('Clinic'), client: prisma },
-            options: {},
-        },
-        {
-            resource: { model: getModelByName('Appointment'), client: prisma },
-            options: {},
-        },
-    ],
-};
-
-const admin = new AdminJS(adminOptions);
-const adminRouter = AdminJSExpress.buildRouter(admin);
-
 app.use(cors());
 app.use(express.json());
 app.use(admin.options.rootPath, adminRouter);
-
-import { authMiddleware } from './src/utils/authMiddleware.js';
 
 import { login, register, refreshToken } from './src/auth.js';
 app.post('/login', login);
