@@ -6,14 +6,44 @@ import session from 'express-session';
 import { authenticateAdmin } from './src/utils/authMiddleware.js';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
+import bcrypt from 'bcryptjs';
+import { componentLoader } from './src/components/index.js';
+
+const hash = async (password) => {
+    return await bcrypt.hash(password, 10);
+};
 
 AdminJS.registerAdapter({ Database, Resource });
 
 const adminOptions = {
+    componentLoader,
     resources: [
         {
             resource: { model: getModelByName('User'), client: prisma },
-            options: {},
+            options: {
+                actions: {
+                    new: {
+                        before: async (request) => {
+                            if (request.payload?.password) {
+                                request.payload.password = await hash(
+                                    request.payload.password
+                                );
+                            }
+                            return request;
+                        },
+                    },
+                    edit: {
+                        before: async (request) => {
+                            if (request.payload?.password) {
+                                request.payload.password = await hash(
+                                    request.payload.password
+                                );
+                            }
+                            return request;
+                        },
+                    },
+                },
+            },
         },
         {
             resource: { model: getModelByName('Survey'), client: prisma },
@@ -21,7 +51,30 @@ const adminOptions = {
         },
         {
             resource: { model: getModelByName('Doctor'), client: prisma },
-            options: {},
+            options: {
+                actions: {
+                    new: {
+                        before: async (request) => {
+                            if (request.payload?.password) {
+                                request.payload.password = await hash(
+                                    request.payload.password
+                                );
+                            }
+                            return request;
+                        },
+                    },
+                    edit: {
+                        before: async (request) => {
+                            if (request.payload?.password) {
+                                request.payload.password = await hash(
+                                    request.payload.password
+                                );
+                            }
+                            return request;
+                        },
+                    },
+                },
+            },
         },
         {
             resource: { model: getModelByName('Clinic'), client: prisma },
