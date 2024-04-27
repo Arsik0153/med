@@ -6,6 +6,7 @@ import Features from './Features';
 import Embark from './Embark';
 import Subscription from './Subscription';
 import Footer from './Footer';
+import AboutUs from './AboutUs';
 
 const LandingPage = () => {
     return (
@@ -18,6 +19,7 @@ const LandingPage = () => {
             <Whatis />
             <Features />
             <Embark />
+            <AboutUs />
             <Subscription />
             <Footer />
         </div>

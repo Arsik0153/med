@@ -1,10 +1,9 @@
-import Layout from '../../../components/Layout';
 import styles from './styles.module.scss';
 import healthCareImg from '@assets/healthcare.svg';
 
-const AboutUsPage = () => {
+const AboutUs = () => {
     return (
-        <Layout>
+        <div className="container" id="aboutus">
             <div className={styles.card}>
                 <div className={styles.text}>
                     <h1>About us</h1>
@@ -38,8 +37,8 @@ const AboutUsPage = () => {
                     <img src={healthCareImg} alt="" />
                 </div>
             </div>
-        </Layout>
+        </div>
     );
 };
 
-export default AboutUsPage;
+export default AboutUs;

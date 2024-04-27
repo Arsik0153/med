@@ -6,7 +6,7 @@ import secureImg from '@assets/landing/features/secure.png';
 
 const Features = () => {
     return (
-        <div className={`${styles.wrapper} container`}>
+        <div className={`${styles.wrapper} container`} id="features">
             <h2>Features</h2>
             <div className={styles.grid}>
                 <div className={styles.card}>

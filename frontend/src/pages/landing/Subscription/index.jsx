@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 
 const Subscription = () => {
     return (
-        <div className={`${styles.wrapper} container`}>
+        <div className={`${styles.wrapper} container`} id="pricing">
             <h2 className={styles.title}>
                 Choose Your <span>Subscription</span> Plan
             </h2>

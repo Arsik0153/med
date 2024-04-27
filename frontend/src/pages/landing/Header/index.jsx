@@ -1,6 +1,6 @@
-import styles from "./styles.module.scss";
-import logo from "@assets/landing/logo.png";
-import { Link } from "react-router-dom";
+import styles from './styles.module.scss';
+import logo from '@assets/landing/logo.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -9,10 +9,10 @@ const Header = () => {
                 <div className={styles.left}>
                     <img src={logo} className={styles.logo} />
                     <ul>
-                        <a href="">About us</a>
-                        <a href="">Membership</a>
-                        <a href="">Articles</a>
-                        <a href="">Recorces</a>
+                        <a href="#dha">What is DHA</a>
+                        <a href="#features">Features</a>
+                        <a href="#aboutus">About us</a>
+                        <a href="#pricing">Pricing</a>
                     </ul>
                 </div>
                 <div className={styles.controls}>

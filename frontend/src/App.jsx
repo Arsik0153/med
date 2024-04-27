@@ -13,7 +13,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import AuthenticatedRoutes from './components/ProtectedRoute';
 import DoctorCabinet from './pages/doctor/cabinet';
-import AboutUsPage from './pages/cabinet/about-us';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -23,7 +22,6 @@ const router = createBrowserRouter(
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />
                 <Route path="cabinet/appointment" element={<Appointment />} />
-                <Route path="about-us" element={<AboutUsPage />} />
             </Route>
             <Route element={<AuthenticatedRoutes />}>
                 <Route path="/cabinet" element={<Cabinet />} />
