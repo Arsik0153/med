@@ -2,14 +2,22 @@ import styles from './styles.module.scss';
 import logoImg from '@assets/landing/logo.png';
 import { useUser } from '../../api/useUser';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useOutsideClick } from '../../utils/useOutsideClick';
 
 const Layout = ({ children }) => {
     const [user] = useUser();
+    const [dropdownVisible, setDropdownVisible] = useState(false);
 
     const navigate = useNavigate();
 
+    const ref = useOutsideClick(() => {
+        setDropdownVisible(false);
+        console.log('click outside');
+    });
+
     const handleLogout = () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('TOKEN');
         navigate('/');
     };
 
@@ -33,13 +41,26 @@ const Layout = ({ children }) => {
                             subscription
                         </a>
                     </div>
-                    <div className={styles.right} onClick={handleLogout}>
+                    <div
+                        className={styles.right}
+                        onClick={() => setDropdownVisible(!dropdownVisible)}
+                        ref={ref}
+                    >
                         {user.name}
                         <img
                             src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"
                             alt=""
                             className={styles.avatar}
                         />
+                        {dropdownVisible && (
+                            <ul className={styles.dropdownMenu}>
+                                <li>
+                                    <button onClick={handleLogout}>
+                                        Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        )}
                     </div>
                 </header>
                 <main className={styles.main}>{children}</main>

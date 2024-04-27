@@ -51,12 +51,31 @@
         color: #0558a5;
         font-weight: 500;
         cursor: pointer;
+        position: relative;
 
         .avatar {
             width: 50px;
             height: 50px;
             object-fit: cover;
             border-radius: 100%;
+        }
+
+        .dropdownMenu {
+            position: absolute;
+            top: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            list-style: none;
+            padding-top: 10px;
+
+            button {
+                width: 100%;
+                background-color: #fff;
+                border: none;
+                padding: 10px 0;
+                border-radius: 5px;
+            }
         }
     }
 }

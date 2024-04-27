@@ -2,13 +2,20 @@ import styles from './styles.module.scss';
 import logoImg from '@assets/landing/logo.png';
 import { useDoctor } from '../../api/useDoctor';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useOutsideClick } from '../../utils/useOutsideClick';
 
 const Layout = ({ children }) => {
     const [user] = useDoctor();
     const navigate = useNavigate();
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const ref = useOutsideClick(() => {
+        setDropdownVisible(false);
+        console.log('click outside');
+    });
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('TOKEN');
         navigate('/');
     };
 
@@ -30,7 +37,11 @@ const Layout = ({ children }) => {
                             Articles
                         </a>
                     </div>
-                    <div className={styles.right} onClick={handleLogout}>
+                    <div
+                        className={styles.right}
+                        onClick={() => setDropdownVisible(!dropdownVisible)}
+                        ref={ref}
+                    >
                         <div className={styles.profile}>
                             <span>{user.name}</span>
                             <span>{user.specialization_type}</span>
@@ -40,6 +51,15 @@ const Layout = ({ children }) => {
                             alt=""
                             className={styles.avatar}
                         />
+                        {dropdownVisible && (
+                            <ul className={styles.dropdownMenu}>
+                                <li>
+                                    <button onClick={handleLogout}>
+                                        Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        )}
                     </div>
                 </header>
                 <main className={styles.main}>{children}</main>
