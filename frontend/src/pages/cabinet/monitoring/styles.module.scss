@@ -25,6 +25,10 @@
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
         margin-bottom: 100px;
+
+        ul {
+            padding: 0;
+        }
     }
 
     .left {

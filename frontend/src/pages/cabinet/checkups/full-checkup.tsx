@@ -112,15 +112,15 @@ const FullCheckup = () => {
                     <div className={styles.formGroup}>
                         <div className={styles.formEl}>
                             <label>Vitamin D3</label>
-                            <input type="text" name="vitamin_d3" />
+                            <input type="number" name="vitamin_d3" />
                         </div>
                         <div className={styles.formEl}>
                             <label>Vitamin A</label>
-                            <input type="text" name="vitamin_a" />
+                            <input type="number" name="vitamin_a" />
                         </div>
                         <div className={styles.formEl}>
                             <label>Vitamin C</label>
-                            <input type="text" name="vitamin_c" />
+                            <input type="number" name="vitamin_c" />
                         </div>
 
                         <div className={styles.formEl}>

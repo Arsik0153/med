@@ -114,20 +114,20 @@ const SportsCheckup = () => {
                     <div className={styles.formGroup}>
                         <div className={styles.formEl}>
                             <label>Push ups</label>
-                            <input type="text" name="pushups" />
+                            <input type="number" name="pushups" />
                         </div>
                         <div className={styles.formEl}>
                             <label>Squats</label>
-                            <input type="text" name="squats" />
+                            <input type="number" name="squats" />
                         </div>
                         <div className={styles.formEl}>
                             <label>Press</label>
-                            <input type="text" name="press" />
+                            <input type="number" name="press" />
                         </div>
 
                         <div className={styles.formEl}>
                             <label>Bench press</label>
-                            <input type="text" name="bench_press" />
+                            <input type="number" name="bench_press" />
                         </div>
 
                         <div className={styles.formEl}>
