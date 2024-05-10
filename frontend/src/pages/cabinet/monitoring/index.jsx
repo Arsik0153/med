@@ -23,7 +23,7 @@ function formatDate(dateObj) {
 
 const Monitoring = () => {
     const { data: checkups, isLoading } = useQuery({
-        queryKey: ['checkups'],
+        queryKey: ['monitoring'],
         queryFn: getMyCheckups,
         refetchOnMount: false,
         refetchOnWindowFocus: false,
