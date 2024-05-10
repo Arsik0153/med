@@ -31,6 +31,7 @@ export const KEYS = {
     squats: 'Squats',
     press: 'Press',
     bench_press: 'Bench Press',
+    blood: 'Blood test',
 };
 
 const ViewCheckup = () => {

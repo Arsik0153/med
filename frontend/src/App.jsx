@@ -19,6 +19,7 @@ import FullCheckup from './pages/cabinet/checkups/full-checkup';
 import SportsCheckup from './pages/cabinet/checkups/sports-checkup';
 import Monitoring from './pages/cabinet/monitoring';
 import ViewCheckup from './pages/cabinet/monitoring/view';
+import PregnancyCheckup from './pages/cabinet/checkups/pregnancy-checkup';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -37,6 +38,10 @@ const router = createBrowserRouter(
                 <Route
                     path="cabinet/checkups/sports-checkup"
                     element={<SportsCheckup />}
+                />
+                <Route
+                    path="cabinet/checkups/pregnancy-checkup"
+                    element={<PregnancyCheckup />}
                 />
                 <Route path="cabinet/monitoring" element={<Monitoring />} />
                 <Route
