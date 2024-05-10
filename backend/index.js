@@ -66,8 +66,12 @@ app.get('/appointments/:id', getAppointment);
 app.post('/appointments', createAppointment);
 app.put('/appointments/:id', updateAppointment);
 app.delete('/appointments/:id', deleteAppointment);
-app.get('/appointments/date/:date', getAppointmentsByDate);
-app.get('/doctors/appointments/closest', getDoctorNextAppointments);
+app.get('/appointments/date/:date', authMiddleware, getAppointmentsByDate);
+app.get(
+    '/doctors/appointments/closest',
+    authMiddleware,
+    getDoctorNextAppointments
+);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);

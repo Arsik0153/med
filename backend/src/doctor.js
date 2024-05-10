@@ -1,7 +1,14 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
+
+const generateToken = (userId) => {
+    const secret = process.env.JWT_SECRET;
+    const token = jwt.sign({ userId }, secret, { expiresIn: '1h' });
+    return token;
+};
 
 export const getDoctors = async (req, res) => {
     try {
@@ -59,8 +66,9 @@ export const createDoctor = async (req, res) => {
                 clinic: true,
             },
         });
-
-        res.status(201).json(doctor);
+        const newDoctor = { ...doctor, role: 'doctor' };
+        const token = generateToken(newDoctor);
+        res.json({ token });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

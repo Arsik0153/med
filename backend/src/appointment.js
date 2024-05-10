@@ -55,7 +55,7 @@ export const getAppointmentsByDate = async (req, res) => {
                     gte: startDate,
                     lt: endDate,
                 },
-                patientId: req.user,
+                patientId: req.user.id,
             },
             include: {
                 clinic: true,
@@ -129,7 +129,7 @@ export const getDoctorNextAppointments = async (req, res) => {
 
         const appointments = await prisma.appointment.findMany({
             where: {
-                doctorId: req.user,
+                doctorId: req.user.id,
                 date: {
                     gte: now,
                 },

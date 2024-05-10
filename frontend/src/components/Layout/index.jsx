@@ -13,7 +13,6 @@ const Layout = ({ children }) => {
 
     const ref = useOutsideClick(() => {
         setDropdownVisible(false);
-        console.log('click outside');
     });
 
     const handleLogout = () => {

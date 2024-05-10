@@ -1,10 +1,10 @@
-import { useState } from "react";
-import styles from "./styles.module.scss";
-import logoImg from "@assets/landing/logo.png";
-import { toast } from "react-hot-toast";
-import { api, authApi } from "../../api/api";
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import styles from './styles.module.scss';
+import logoImg from '@assets/landing/logo.png';
+import { toast } from 'react-hot-toast';
+import { api, authApi } from '../../api/api';
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 const signup = async (credentials) => {
     const response = await api
@@ -26,24 +26,24 @@ const Signup = () => {
     const [lifestyle, setLifeStyle] = useState();
     const [smoke, setSmoke] = useState();
     const [formData, setFormData] = useState({
-        gender: "male",
+        gender: 'male',
     });
     const navigate = useNavigate();
 
     const { mutate: surveyMutation } = useMutation({
         mutationFn: addSurvey,
         onSuccess: () => {
-            navigate("/cabinet");
+            navigate('/cabinet');
         },
         onError: () => {
-            toast.error("Error while signing up");
+            toast.error('Error while signing up');
         },
     });
 
     const { mutate: signupMutation } = useMutation({
         mutationFn: signup,
         onSuccess: (data) => {
-            localStorage.setItem("TOKEN", data.token);
+            localStorage.setItem('TOKEN', data.token);
             surveyMutation({
                 question1: purpose,
                 question2: lifestyle,
@@ -51,7 +51,7 @@ const Signup = () => {
             });
         },
         onError: () => {
-            toast.error("Error while signing up");
+            toast.error('Error while signing up');
         },
     });
 
@@ -76,17 +76,17 @@ const Signup = () => {
             !formData.password ||
             !formData.repeatPassword
         ) {
-            toast.error("Please fill all fields");
+            toast.error('Please fill all fields');
             return;
         }
 
         if (formData.password !== formData.repeatPassword) {
-            toast.error("Passwords do not match");
+            toast.error('Passwords do not match');
             return;
         }
 
         if (formData.password.length < 8) {
-            toast.error("Password must be at least 8 characters long");
+            toast.error('Password must be at least 8 characters long');
             return;
         }
 
@@ -94,7 +94,6 @@ const Signup = () => {
     };
 
     const handleSignup = () => {
-        console.log("formData", formData);
         const data = {
             email: formData.email,
             password: formData.password,
@@ -163,6 +162,17 @@ const Signup = () => {
                         <button className={styles.signup} type="submit">
                             Sign up
                         </button>
+                        <a
+                            href="/doctor/signup"
+                            style={{
+                                textAlign: 'center',
+                                textDecoration: 'none',
+                                marginTop: 20,
+                                color: '#007df0',
+                            }}
+                        >
+                            Create account as a doctor
+                        </a>
                     </form>
                 )}
                 {step === 2 && (
@@ -176,21 +186,21 @@ const Signup = () => {
                         <button
                             className={styles.radio}
                             onClick={() => handlePurposeChange(1)}
-                            data-active={purpose === 1 && "true"}
+                            data-active={purpose === 1 && 'true'}
                         >
                             I care about my health and want to monitor it
                         </button>
                         <button
                             className={styles.radio}
                             onClick={() => handlePurposeChange(2)}
-                            data-active={purpose === 2 && "true"}
+                            data-active={purpose === 2 && 'true'}
                         >
                             I have a chronic disease and want to monitor it
                         </button>
                         <button
                             className={styles.radio}
                             onClick={() => handlePurposeChange(3)}
-                            data-active={purpose === 3 && "true"}
+                            data-active={purpose === 3 && 'true'}
                         >
                             I want to find out if everything is ok with my
                             health
@@ -212,21 +222,21 @@ const Signup = () => {
                         <button
                             className={styles.radio}
                             onClick={() => setLifeStyle(1)}
-                            data-active={lifestyle === 1 && "true"}
+                            data-active={lifestyle === 1 && 'true'}
                         >
                             Yes, sport 5 times a week and more
                         </button>
                         <button
                             className={styles.radio}
                             onClick={() => setLifeStyle(2)}
-                            data-active={lifestyle === 2 && "true"}
+                            data-active={lifestyle === 2 && 'true'}
                         >
                             Sport 3-5 times a week
                         </button>
                         <button
                             className={styles.radio}
                             onClick={() => setLifeStyle(3)}
-                            data-active={lifestyle === 3 && "true"}
+                            data-active={lifestyle === 3 && 'true'}
                         >
                             No, I lead a sedentary lifestyle
                         </button>
@@ -247,14 +257,14 @@ const Signup = () => {
                         <button
                             className={styles.radio}
                             onClick={() => setSmoke(1)}
-                            data-active={smoke === 1 && "true"}
+                            data-active={smoke === 1 && 'true'}
                         >
                             Yes
                         </button>
                         <button
                             className={styles.radio}
                             onClick={() => setSmoke(2)}
-                            data-active={smoke === 2 && "true"}
+                            data-active={smoke === 2 && 'true'}
                         >
                             No
                         </button>

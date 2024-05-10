@@ -77,7 +77,8 @@ export const register = async (req, res) => {
             data: { email, password: hashedPassword, name, birthDate, gender },
         });
 
-        const token = generateToken(user.id);
+        const newUser = { ...user, role: 'user' };
+        const token = generateToken(newUser);
         res.json({ token });
     } catch (error) {
         console.error(error);

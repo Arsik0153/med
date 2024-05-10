@@ -11,7 +11,6 @@ const Layout = ({ children }) => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const ref = useOutsideClick(() => {
         setDropdownVisible(false);
-        console.log('click outside');
     });
 
     const handleLogout = () => {

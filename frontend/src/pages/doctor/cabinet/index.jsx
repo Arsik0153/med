@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './calendar.css';
 import { useEffect, useState } from 'react';
-import { api } from '../../../api/api';
+import { authApi } from '../../../api/api';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useDoctor } from '../../../api/useDoctor';
@@ -12,7 +12,7 @@ import ChatGPT from '../../../components/Chatgpt';
 
 const fetchAppointments = async (date) => {
     try {
-        const { data } = await api.get(`/appointments/date/${date}`);
+        const { data } = await authApi.get(`/appointments/date/${date}`);
         return data;
     } catch (error) {
         console.error('Error fetching appointments:', error);
@@ -22,7 +22,7 @@ const fetchAppointments = async (date) => {
 
 const fetchClosestAppointments = async () => {
     try {
-        const { data } = await api.get(`/doctors/appointments/closest`);
+        const { data } = await authApi.get(`/doctors/appointments/closest`);
         return data;
     } catch (error) {
         console.error('Error fetching closest appointments:', error);

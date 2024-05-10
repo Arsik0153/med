@@ -30,7 +30,7 @@ export const createSurveyResult = async (req, res) => {
     try {
         const surveyResult = await prisma.survey.create({
             data: {
-                authorId: req.user,
+                authorId: req.user.id,
                 question1: req.body.question1,
                 question2: req.body.question2,
                 question3: req.body.question3,
