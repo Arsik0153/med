@@ -73,6 +73,19 @@ app.get(
     getDoctorNextAppointments
 );
 
+import {
+    createCheckup,
+    deleteCheckup,
+    getAllCheckups,
+    getSingleCheckup,
+    getMyCheckups,
+} from './src/checkup.js';
+app.get('/checkups', getAllCheckups);
+app.post('/checkups', createCheckup);
+app.delete('/checkups/:id', deleteCheckup);
+app.get('/checkups/my', authMiddleware, getMyCheckups);
+app.get('/checkups/:id', getSingleCheckup);
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
     console.log(

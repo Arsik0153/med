@@ -23,6 +23,7 @@ model User {
   phoneNumber String?
   surveys     Survey?
   Appointment Appointment[]
+  Checkup     Checkup[]
 }
 
 model Survey {
@@ -67,6 +68,17 @@ model Appointment {
   patient   User     @relation(fields: [patientId], references: [id])
   patientId Int
   format    String   @default("offline")
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Checkup {
+  id        Int      @id @default(autoincrement())
+  patient   User     @relation(fields: [patientId], references: [id])
+  patientId Int
+  name      String
+  content   String
   date      DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

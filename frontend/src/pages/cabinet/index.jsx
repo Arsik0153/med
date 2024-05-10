@@ -59,14 +59,18 @@ const Cabinet = () => {
             </h1>
             <div className={styles.card}>
                 <div className={styles.left}>
-                    <div className={styles.circle}>Check upps/Analysis</div>
+                    <Link to="/cabinet/checkups">
+                        <div className={styles.circle}>Check upps/Analysis</div>
+                    </Link>
                     <Link to="/cabinet/appointment">
                         <div className={styles.circle}>
                             Doctor's appointment
                         </div>
                     </Link>
                     <div className={styles.circle}>Appointment records</div>
-                    <div className={styles.circle}>Monitoring</div>
+                    <Link to="/cabinet/monitoring">
+                        <div className={styles.circle}>Monitoring</div>
+                    </Link>
                 </div>
                 <div className={`${styles.right} full-calendar`}>
                     <h1 style={{ textAlign: 'center', marginBottom: 30 }}>

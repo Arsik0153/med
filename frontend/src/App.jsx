@@ -14,6 +14,11 @@ import { Toaster } from 'react-hot-toast';
 import AuthenticatedRoutes from './components/ProtectedRoute';
 import DoctorCabinet from './pages/doctor/cabinet';
 import DoctorSignUp from './pages/doctor/signup';
+import Checkups from './pages/cabinet/checkups';
+import FullCheckup from './pages/cabinet/checkups/full-checkup';
+import SportsCheckup from './pages/cabinet/checkups/sports-checkup';
+import Monitoring from './pages/cabinet/monitoring';
+import ViewCheckup from './pages/cabinet/monitoring/view';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -24,6 +29,20 @@ const router = createBrowserRouter(
                 <Route path="signup" element={<Signup />} />
                 <Route path="/doctor/signup" element={<DoctorSignUp />} />
                 <Route path="cabinet/appointment" element={<Appointment />} />
+                <Route path="cabinet/checkups" element={<Checkups />} />
+                <Route
+                    path="cabinet/checkups/full-checkup"
+                    element={<FullCheckup />}
+                />
+                <Route
+                    path="cabinet/checkups/sports-checkup"
+                    element={<SportsCheckup />}
+                />
+                <Route path="cabinet/monitoring" element={<Monitoring />} />
+                <Route
+                    path="cabinet/monitoring/view/:id"
+                    element={<ViewCheckup />}
+                />
             </Route>
             <Route element={<AuthenticatedRoutes />}>
                 <Route path="/cabinet" element={<Cabinet />} />

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const api = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
@@ -7,12 +7,12 @@ export const api = axios.create({
 export const authApi = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
     headers: {
-        Authorization: localStorage.getItem("TOKEN"),
+        Authorization: localStorage.getItem('TOKEN'),
     },
 });
 
 authApi.interceptors.request.use((config) => {
-    config.headers.Authorization = localStorage.getItem("TOKEN");
+    config.headers.Authorization = localStorage.getItem('TOKEN');
     return config;
 });
 
@@ -22,16 +22,16 @@ authApi.interceptors.response.use(
         const originalRequest = error.config;
         if (error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
-            const response = await api.post(
-                "/refresh-token",
+            const response = await authApi.post(
+                '/refresh-token',
                 {},
                 {
-                    headers: { Authorization: localStorage.getItem("TOKEN") },
+                    headers: { Authorization: localStorage.getItem('TOKEN') },
                 }
             );
-            localStorage.setItem("TOKEN", response.data.token);
-            authApi.defaults.headers["Authorization"] =
-                localStorage.getItem("TOKEN");
+            localStorage.setItem('TOKEN', response.data.token);
+            authApi.defaults.headers['Authorization'] =
+                localStorage.getItem('TOKEN');
             return authApi(originalRequest);
         }
         throw error;

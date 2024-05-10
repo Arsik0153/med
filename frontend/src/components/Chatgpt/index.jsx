@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import {
     ConversationHeader,
@@ -20,7 +20,7 @@ const systemMessage = {
 be a professional doctor with hight expertise.`,
 };
 
-function Chatbot() {
+function Chatbot({ newMessage }) {
     const [messages, setMessages] = useState([
         {
             message: "Hello, I'm your helper bot. Ask me anything!",
@@ -46,6 +46,13 @@ function Chatbot() {
         setIsTyping(true);
         await processMessageToChatGPT(newMessages);
     };
+
+    useEffect(() => {
+        if (newMessage) {
+            setOpen(true);
+            handleSend(newMessage);
+        }
+    }, [newMessage]);
 
     async function processMessageToChatGPT(chatMessages) {
         let apiMessages = chatMessages.map((messageObject) => {

@@ -4,10 +4,12 @@ import { useUser } from '../../api/useUser';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useOutsideClick } from '../../utils/useOutsideClick';
+import { useQueryClient } from '@tanstack/react-query';
 
 const Layout = ({ children }) => {
     const [user] = useUser();
     const [dropdownVisible, setDropdownVisible] = useState(false);
+    const queryClient = useQueryClient();
 
     const navigate = useNavigate();
 
@@ -17,6 +19,7 @@ const Layout = ({ children }) => {
 
     const handleLogout = () => {
         localStorage.removeItem('TOKEN');
+        queryClient.invalidateQueries();
         navigate('/');
     };
 
