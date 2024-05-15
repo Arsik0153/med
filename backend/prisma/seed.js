@@ -163,6 +163,44 @@ async function main() {
         },
     });
 
+    // Checkup
+    const checkupsData = [
+        {
+            patientId: 1,
+            name: 'Full checkup',
+            content:
+                '{"vitamin_d3":{"value":25,"score":50},"vitamin_a":{"value":400,"score":44.44},"vitamin_c":{"value":20,"score":26.67}}',
+            date: '2024-05-01T00:00:00.000Z',
+        },
+        {
+            patientId: 1,
+            name: 'Full checkup',
+            content:
+                '{"vitamin_d3":{"value":40,"score":80},"vitamin_a":{"value":560,"score":62},"vitamin_c":{"value":35,"score":46}}',
+            date: '2024-05-02T00:00:00.000Z',
+        },
+        {
+            patientId: 1,
+            name: 'Full checkup',
+            content:
+                '{"vitamin_d3":{"value":50,"score":100},"vitamin_a":{"value":450,"score":50},"vitamin_c":{"value":20,"score":27}}',
+            date: '2024-05-03T00:00:00.000Z',
+        },
+        {
+            patientId: 1,
+            name: 'Full checkup',
+            content:
+                '{"vitamin_d3":{"value":30,"score":60},"vitamin_a":{"value":500,"score":55},"vitamin_c":{"value":25,"score":33}}',
+            date: '2024-05-05T00:00:00.000Z',
+        },
+    ];
+
+    for (const checkupData of checkupsData) {
+        await prisma.checkup.create({
+            data: checkupData,
+        });
+    }
+
     console.log('Seed data inserted successfully.');
 }
 
