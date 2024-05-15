@@ -98,3 +98,22 @@ export const deleteCheckup = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+// get checkups by user and checkup name (patient from token)
+export const getCheckupsByName = async (req, res) => {
+    try {
+        const { name } = req.query;
+        const checkups = await prisma.checkup.findMany({
+            where: {
+                patientId: req.user.id,
+                name: {
+                    equals: name,
+                    mode: 'insensitive',
+                },
+            },
+        });
+        res.status(200).json(checkups);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};

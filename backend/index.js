@@ -97,11 +97,14 @@ import {
     getAllCheckups,
     getSingleCheckup,
     getMyCheckups,
+    getCheckupsByName,
 } from './src/checkup.js';
+
+app.get('/checkups/name', authMiddleware, getCheckupsByName);
 app.get('/checkups', getAllCheckups);
 app.post('/checkups', createCheckup);
-app.delete('/checkups/:id', deleteCheckup);
 app.get('/checkups/my', authMiddleware, getMyCheckups);
+app.delete('/checkups/:id', deleteCheckup);
 app.get('/checkups/:id', getSingleCheckup);
 
 app.listen(port, () => {
