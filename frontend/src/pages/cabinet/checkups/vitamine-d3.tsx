@@ -40,7 +40,7 @@ const systemMessage = {
     `,
 };
 
-const FullCheckup = () => {
+const VitamineD3Checkup = () => {
     const [user] = useUser();
     const [loading, setLoading] = React.useState(false);
     const [modalOpen, setModalOpen] = React.useState(false);
@@ -50,15 +50,8 @@ const FullCheckup = () => {
         const formData = new FormData(e.target);
         const data = {
             vitamin_d3: formData.get('vitamin_d3'),
-            vitamin_a: formData.get('vitamin_a'),
-            vitamin_c: formData.get('vitamin_c'),
         };
-        if (
-            !data.vitamin_d3 ||
-            !data.vitamin_a ||
-            !data.vitamin_c ||
-            !formData.get('date')
-        ) {
+        if (!data.vitamin_d3 || !formData.get('date')) {
             toast.error('Please fill all fields');
             return;
         }
@@ -90,7 +83,7 @@ const FullCheckup = () => {
 
             await authApi.post('/checkups', {
                 patientId: user.id,
-                name: 'Full checkup',
+                name: 'Vitamine D3 checkup',
                 content: JSON.stringify(response),
                 date: dateObj,
             });
@@ -114,7 +107,7 @@ const FullCheckup = () => {
     return (
         <Layout>
             {modalOpen && <Modal />}
-            <h1 className={styles.title}>Full checkup</h1>
+            <h1 className={styles.title}>Vitamine D3 checkup</h1>
             <form className={styles.cardBase} onSubmit={handleSubmit}>
                 <div className={styles.left}>
                     <h2>Necessary tests</h2>
@@ -123,14 +116,6 @@ const FullCheckup = () => {
                         <div className={styles.formEl}>
                             <label>Vitamin D3</label>
                             <input type="number" name="vitamin_d3" />
-                        </div>
-                        <div className={styles.formEl}>
-                            <label>Vitamin A</label>
-                            <input type="number" name="vitamin_a" />
-                        </div>
-                        <div className={styles.formEl}>
-                            <label>Vitamin C</label>
-                            <input type="number" name="vitamin_c" />
                         </div>
 
                         <div className={styles.formEl}>
@@ -184,4 +169,4 @@ const FullCheckup = () => {
     );
 };
 
-export default FullCheckup;
+export default VitamineD3Checkup;

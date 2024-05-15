@@ -61,6 +61,8 @@ import {
     getDoctorNextAppointments,
     updateAppointment,
     getAppointmentsByPatientInMonth,
+    getAppointmentsByDoctorInMonth,
+    getAppointmentsByDateDoctor,
 } from './src/appointment.js';
 app.get('/appointments', getAllAppointments);
 app.get('/appointments/:id', getAppointment);
@@ -68,6 +70,11 @@ app.post('/appointments', createAppointment);
 app.put('/appointments/:id', updateAppointment);
 app.delete('/appointments/:id', deleteAppointment);
 app.get('/appointments/date/:date', authMiddleware, getAppointmentsByDate);
+app.get(
+    '/appointments/date/doctor/:date',
+    authMiddleware,
+    getAppointmentsByDateDoctor
+);
 app.get(
     '/doctors/appointments/closest',
     authMiddleware,
@@ -77,6 +84,11 @@ app.get(
     '/appointments/patient/month',
     authMiddleware,
     getAppointmentsByPatientInMonth
+);
+app.get(
+    '/appointments/doctor/month',
+    authMiddleware,
+    getAppointmentsByDoctorInMonth
 );
 
 import {

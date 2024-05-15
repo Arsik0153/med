@@ -18,7 +18,6 @@ export const getAllAppointments = async (req, res) => {
     }
 };
 
-// Get all appointments by patient in current month
 // Get all appointments by patient in a given month
 export const getAppointmentsByPatientInMonth = async (req, res) => {
     try {
@@ -30,6 +29,38 @@ export const getAppointmentsByPatientInMonth = async (req, res) => {
         const appointments = await prisma.appointment.findMany({
             where: {
                 patientId,
+                date: {
+                    gte: startOfMonth,
+                    lte: endOfMonth,
+                },
+            },
+            include: {
+                clinic: true,
+                doctor: true,
+                patient: true,
+            },
+            orderBy: {
+                date: 'asc',
+            },
+        });
+
+        res.status(200).json(appointments);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// Get all appointments by doctor in a given month
+export const getAppointmentsByDoctorInMonth = async (req, res) => {
+    try {
+        const { id: doctorId } = req.user;
+        const { month } = req.params;
+        const startOfMonth = moment(month).startOf('month').toDate();
+        const endOfMonth = moment(month).endOf('month').toDate();
+
+        const appointments = await prisma.appointment.findMany({
+            where: {
+                doctorId,
                 date: {
                     gte: startOfMonth,
                     lte: endOfMonth,
@@ -90,6 +121,38 @@ export const getAppointmentsByDate = async (req, res) => {
                     lt: endDate,
                 },
                 patientId: req.user.id,
+            },
+            include: {
+                clinic: true,
+                doctor: true,
+                patient: true,
+            },
+        });
+
+        res.status(200).json(appointments);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+//doctor
+export const getAppointmentsByDateDoctor = async (req, res) => {
+    try {
+        const { date } = req.params;
+        const startDate = new Date(date);
+        const endDate = new Date(
+            startDate.getFullYear(),
+            startDate.getMonth(),
+            startDate.getDate() + 1
+        );
+
+        const appointments = await prisma.appointment.findMany({
+            where: {
+                date: {
+                    gte: startDate,
+                    lt: endDate,
+                },
+                doctorId: req.user.id,
             },
             include: {
                 clinic: true,

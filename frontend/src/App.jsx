@@ -20,6 +20,8 @@ import SportsCheckup from './pages/cabinet/checkups/sports-checkup';
 import Monitoring from './pages/cabinet/monitoring';
 import ViewCheckup from './pages/cabinet/monitoring/view';
 import PregnancyCheckup from './pages/cabinet/checkups/pregnancy-checkup';
+import PostSurgeryCheckup from './pages/cabinet/checkups/post-surgery-checkup';
+import VitamineD3Checkup from './pages/cabinet/checkups/vitamine-d3';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -42,6 +44,14 @@ const router = createBrowserRouter(
                 <Route
                     path="cabinet/checkups/pregnancy-checkup"
                     element={<PregnancyCheckup />}
+                />
+                <Route
+                    path="cabinet/checkups/post-surgery-checkup"
+                    element={<PostSurgeryCheckup />}
+                />
+                <Route
+                    path="cabinet/checkups/vitamine-d3-checkup"
+                    element={<VitamineD3Checkup />}
                 />
                 <Route path="cabinet/monitoring" element={<Monitoring />} />
                 <Route

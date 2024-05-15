@@ -40,7 +40,7 @@ const systemMessage = {
     `,
 };
 
-const FullCheckup = () => {
+const PostSurgeryCheckup = () => {
     const [user] = useUser();
     const [loading, setLoading] = React.useState(false);
     const [modalOpen, setModalOpen] = React.useState(false);
@@ -49,14 +49,14 @@ const FullCheckup = () => {
 
         const formData = new FormData(e.target);
         const data = {
-            vitamin_d3: formData.get('vitamin_d3'),
-            vitamin_a: formData.get('vitamin_a'),
-            vitamin_c: formData.get('vitamin_c'),
+            blood_oxygen_level: formData.get('blood_oxygen_level'),
+            pulse: formData.get('pulse'),
+            body_temperature: formData.get('body_temperature'),
         };
         if (
-            !data.vitamin_d3 ||
-            !data.vitamin_a ||
-            !data.vitamin_c ||
+            !data.blood_oxygen_level ||
+            !data.body_temperature ||
+            !data.pulse ||
             !formData.get('date')
         ) {
             toast.error('Please fill all fields');
@@ -90,7 +90,7 @@ const FullCheckup = () => {
 
             await authApi.post('/checkups', {
                 patientId: user.id,
-                name: 'Full checkup',
+                name: 'Post surgery checkup',
                 content: JSON.stringify(response),
                 date: dateObj,
             });
@@ -114,23 +114,23 @@ const FullCheckup = () => {
     return (
         <Layout>
             {modalOpen && <Modal />}
-            <h1 className={styles.title}>Full checkup</h1>
+            <h1 className={styles.title}>Post surgery checkup</h1>
             <form className={styles.cardBase} onSubmit={handleSubmit}>
                 <div className={styles.left}>
                     <h2>Necessary tests</h2>
 
                     <div className={styles.formGroup}>
                         <div className={styles.formEl}>
-                            <label>Vitamin D3</label>
-                            <input type="number" name="vitamin_d3" />
+                            <label>Blood oxygen level (%)</label>
+                            <input type="number" name="blood_oxygen_level" />
                         </div>
                         <div className={styles.formEl}>
-                            <label>Vitamin A</label>
-                            <input type="number" name="vitamin_a" />
+                            <label>Pulse (bpm)</label>
+                            <input type="number" name="pulse" />
                         </div>
                         <div className={styles.formEl}>
-                            <label>Vitamin C</label>
-                            <input type="number" name="vitamin_c" />
+                            <label>Body temperature</label>
+                            <input type="text" name="body_temperature" />
                         </div>
 
                         <div className={styles.formEl}>
@@ -184,4 +184,4 @@ const FullCheckup = () => {
     );
 };
 
-export default FullCheckup;
+export default PostSurgeryCheckup;

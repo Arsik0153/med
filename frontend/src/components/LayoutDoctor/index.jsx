@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 import logoImg from '@assets/landing/logo.png';
 import { useDoctor } from '../../api/useDoctor';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useOutsideClick } from '../../utils/useOutsideClick';
 
@@ -25,7 +25,9 @@ const Layout = ({ children }) => {
             <div className="container">
                 <header className={styles.header}>
                     <div className={styles.left}>
-                        <img src={logoImg} alt="" />
+                        <Link to="/doctor/cabinet">
+                            <img src={logoImg} alt="" />
+                        </Link>
                         <a href="" className={styles.innerLink}>
                             Main
                         </a>

@@ -13,20 +13,30 @@ const systemMessage = {
     content: `
         You are a doctor specialized on health checkups. I will give you json object with some aspects of health and their values. For example,
         {
-            "vitamind3": "50",
-            "vitamina": "900",
-            "vitaminc": "75"
+            "vitamin_d3": "50",
+            "vitamin_a": "900",
+            "vitamin_c": "75"
         }
 
-        You need to give me same json structure with updated values. For each aspect, you need to give a value from 0 to 100 where 0 is "very abnormal" and 100 is "very normal".
+        You need to give me same json structure with updated values. For each aspect, you need to give a value (score) from 0 to 100 where 0 is "very abnormal" and 100 is "very normal".
         Example output for the given input:
         {
-            "vitamind3": 100,
-            "vitamina": 100,
-            "vitaminc": 100
+            "vitamin_d3": {
+                value: 50,
+                score: 100,
+            },
+            "vitamin_a": {
+                value: 950,
+                score: 100,
+            },
+            "vitamin_c": {
+                value: 75,
+                score: 100,
+            }
         }
         Since vitamin values I provided as example are all the norms for an adult person, every aspect is 100. 
         But, for instance, vitamin_a I provided would be 450, which is pretty abnormal, so the value for it would be 50, because norm for an adult is 900, so 450 is half of the norm.
+        "Value" is just a value that I provided.
     `,
 };
 
