@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import moment from 'moment';
 const prisma = new PrismaClient();
 
 // Get all appointments
@@ -11,6 +12,39 @@ export const getAllAppointments = async (req, res) => {
                 patient: true,
             },
         });
+        res.status(200).json(appointments);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// Get all appointments by patient in current month
+// Get all appointments by patient in a given month
+export const getAppointmentsByPatientInMonth = async (req, res) => {
+    try {
+        const { id: patientId } = req.user;
+        const { month } = req.params;
+        const startOfMonth = moment(month).startOf('month').toDate();
+        const endOfMonth = moment(month).endOf('month').toDate();
+
+        const appointments = await prisma.appointment.findMany({
+            where: {
+                patientId,
+                date: {
+                    gte: startOfMonth,
+                    lte: endOfMonth,
+                },
+            },
+            include: {
+                clinic: true,
+                doctor: true,
+                patient: true,
+            },
+            orderBy: {
+                date: 'asc',
+            },
+        });
+
         res.status(200).json(appointments);
     } catch (error) {
         res.status(500).json({ error: error.message });

@@ -60,6 +60,7 @@ import {
     getAppointmentsByDate,
     getDoctorNextAppointments,
     updateAppointment,
+    getAppointmentsByPatientInMonth,
 } from './src/appointment.js';
 app.get('/appointments', getAllAppointments);
 app.get('/appointments/:id', getAppointment);
@@ -71,6 +72,11 @@ app.get(
     '/doctors/appointments/closest',
     authMiddleware,
     getDoctorNextAppointments
+);
+app.get(
+    '/appointments/patient/month',
+    authMiddleware,
+    getAppointmentsByPatientInMonth
 );
 
 import {

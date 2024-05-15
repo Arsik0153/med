@@ -21,6 +21,37 @@ const fetchAppointments = async (date) => {
     }
 };
 
+const fetchAppointmentsInMonth = async (date) => {
+    try {
+        const { data } = await authApi.get(
+            `/appointments/patient/month?month=${date}`
+        );
+        return data;
+    } catch (error) {
+        console.error('Error fetching appointments in calendar:', error);
+        throw error;
+    }
+};
+
+function getAppointmentsCountForCurrentDate(appointments, currentDate) {
+    if (!appointments) return 0;
+    const currentDateStart = new Date(currentDate);
+    currentDateStart.setHours(0, 0, 0, 0); // Set time to 00:00:00
+
+    const currentDateEnd = new Date(currentDate);
+    currentDateEnd.setHours(23, 59, 59, 999); // Set time to 23:59:59.999
+
+    const appointmentsForCurrentDate = appointments.filter((appointment) => {
+        const appointmentDate = new Date(appointment.date);
+        return (
+            appointmentDate >= currentDateStart &&
+            appointmentDate <= currentDateEnd
+        );
+    });
+
+    return appointmentsForCurrentDate.length;
+}
+
 const Cabinet = () => {
     const [user] = useUser();
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -36,6 +67,20 @@ const Cabinet = () => {
             toast.error('Error occurred while getting appointments!');
         },
     });
+
+    const { data: appointmentsInMonth, refetch: refetchCalendar } = useQuery({
+        queryKey: ['appointmentsInMonth', currentDate],
+        queryFn: () => fetchAppointmentsInMonth(currentDate),
+
+        onSuccess: (data) => {
+            console.log('Appointments fetched!', data);
+        },
+        onError: () => {
+            toast.error('Error occurred while getting appointments!');
+        },
+    });
+
+    console.log('appointmentsInMonth', appointmentsInMonth);
 
     const handleDateChange = (date) => {
         let tzoffset = new Date().getTimezoneOffset() * 60000;
@@ -80,6 +125,22 @@ const Cabinet = () => {
                         locale="en-EN"
                         value={currentDate}
                         onChange={handleDateChange}
+                        tileContent={({ date }) => {
+                            const len = getAppointmentsCountForCurrentDate(
+                                appointmentsInMonth,
+                                date
+                            );
+                            if (len > 0)
+                                return (
+                                    <p className="calendar-tile-content">
+                                        {len}
+                                    </p>
+                                );
+                        }}
+                        onActiveStartDateChange={({ activeStartDate }) => {
+                            console.log('activeStartDate', activeStartDate);
+                            refetchCalendar(activeStartDate);
+                        }}
                     />
                     <h3>Appointments for this date:</h3>
                     <div className={styles.appointments}>

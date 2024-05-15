@@ -1,6 +1,7 @@
 .full-calendar input,
 .full-calendar button {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    position: relative;
 }
 
 .full-calendar header {
@@ -15,7 +16,6 @@
     margin: 0;
 }
 
-
 .full-calendar .react-calendar {
     margin: 0 auto;
     width: 100%;
@@ -24,15 +24,40 @@
 }
 
 .react-calendar__tile--now {
-    border: 1px solid #007DF0 !important;
+    border: 1px solid #007df0 !important;
     background: none;
 }
 
 .react-calendar__tile--now:hover {
-    background-color: #007DF0 !important;
+    background-color: #007df0 !important;
     color: #fff;
 }
 
 .react-calendar__tile--active {
     color: #000 !important;
+}
+
+.react-calendar__tile {
+    padding: 20px 6.6667px;
+}
+
+.calendar-tile-content {
+    position: absolute;
+    background-color: #007df0;
+    color: #fff;
+    width: 17px;
+    height: 17px;
+    border-radius: 999px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 4px;
+    left: 4px;
+    margin-top: 0;
+}
+
+.react-calendar__tile--rangeStart .calendar-tile-content {
+    background-color: #fff;
+    color: #007df0;
 }

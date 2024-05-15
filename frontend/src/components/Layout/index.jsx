@@ -21,9 +21,14 @@ const Layout = ({ children }) => {
         localStorage.removeItem('TOKEN');
         queryClient.invalidateQueries();
         navigate('/');
+        window.location.reload();
     };
 
     if (!user) return null;
+    const avatarUrl =
+        user.gender === 'male'
+            ? 'https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg'
+            : 'https://as1.ftcdn.net/v2/jpg/04/02/27/22/1000_F_402272249_4sGcMQdpo4SL8JGG9q1Ep3PvVuIoOvOJ.jpg';
 
     return (
         <div className={styles.wrapper}>
@@ -49,11 +54,7 @@ const Layout = ({ children }) => {
                         ref={ref}
                     >
                         {user.name}
-                        <img
-                            src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"
-                            alt=""
-                            className={styles.avatar}
-                        />
+                        <img src={avatarUrl} alt="" className={styles.avatar} />
                         {dropdownVisible && (
                             <ul className={styles.dropdownMenu}>
                                 <li>
