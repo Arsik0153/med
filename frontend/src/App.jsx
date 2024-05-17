@@ -23,6 +23,7 @@ import PregnancyCheckup from './pages/cabinet/checkups/pregnancy-checkup';
 import PostSurgeryCheckup from './pages/cabinet/checkups/post-surgery-checkup';
 import VitamineD3Checkup from './pages/cabinet/checkups/vitamine-d3';
 import SettingsPage from './pages/cabinet/settings';
+import FaqPage from './pages/cabinet/faq';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />
                 <Route path="/doctor/signup" element={<DoctorSignUp />} />
+                <Route path="cabinet/faq" element={<FaqPage />} />
                 <Route path="cabinet/appointment" element={<Appointment />} />
                 <Route path="cabinet/checkups" element={<Checkups />} />
                 <Route

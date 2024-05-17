@@ -45,9 +45,9 @@ const Layout = ({ children }) => {
                         <Link to="/about-us" className={styles.innerLink}>
                             About us
                         </Link>
-                        <a href="" className={styles.innerLink}>
+                        <Link to="/cabinet/faq" className={styles.innerLink}>
                             FAQ
-                        </a>
+                        </Link>
                         <Link
                             to="/cabinet/settings"
                             className={styles.innerLink}
