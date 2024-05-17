@@ -12,19 +12,20 @@ datasource db {
 }
 
 model User {
-  id          Int           @id @default(autoincrement())
-  name        String
-  email       String        @unique
-  password    String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  birthDate   DateTime
-  gender      String
-  iin         String?
-  phoneNumber String?
-  surveys     Survey?
-  Appointment Appointment[]
-  Checkup     Checkup[]
+  id           Int           @id @default(autoincrement())
+  name         String
+  email        String        @unique
+  password     String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  birthDate    DateTime
+  gender       String
+  iin          String?
+  phoneNumber  String?
+  surveys      Survey?
+  Appointment  Appointment[]
+  Checkup      Checkup[]
+  subscription Subscription[]
 }
 
 model Survey {
@@ -83,4 +84,16 @@ model Checkup {
   date      DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Subscription {
+  id             Int      @id @default(autoincrement())
+  userId         Int      
+  user           User     @relation(fields: [userId], references: [id])
+  plan           String
+  duration       String
+  startDate      DateTime
+  expirationDate DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }

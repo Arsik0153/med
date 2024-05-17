@@ -30,6 +30,10 @@ const Layout = ({ children }) => {
             ? 'https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg'
             : 'https://as1.ftcdn.net/v2/jpg/04/02/27/22/1000_F_402272249_4sGcMQdpo4SL8JGG9q1Ep3PvVuIoOvOJ.jpg';
 
+    const plan = user.subscription?.plan || 'Basic';
+
+    const capitalizedPlan = plan.charAt(0).toUpperCase() + plan.slice(1);
+
     return (
         <div className={styles.wrapper}>
             <div className="container">
@@ -39,21 +43,27 @@ const Layout = ({ children }) => {
                             <img src={logoImg} alt="" />
                         </Link>
                         <Link to="/about-us" className={styles.innerLink}>
-                            about us
+                            About us
                         </Link>
                         <a href="" className={styles.innerLink}>
                             FAQ
                         </a>
-                        <a href="" className={styles.innerLink}>
-                            subscription
-                        </a>
+                        <Link
+                            to="/cabinet/settings"
+                            className={styles.innerLink}
+                        >
+                            Settings
+                        </Link>
                     </div>
                     <div
                         className={styles.right}
                         onClick={() => setDropdownVisible(!dropdownVisible)}
                         ref={ref}
                     >
-                        {user.name}
+                        <div className={styles.profile}>
+                            <span>{user.name}</span>
+                            <span>{capitalizedPlan} plan</span>
+                        </div>
                         <img src={avatarUrl} alt="" className={styles.avatar} />
                         {dropdownVisible && (
                             <ul className={styles.dropdownMenu}>

@@ -11,6 +11,7 @@ import {
 } from '@chatscope/chat-ui-kit-react';
 import './styles.css';
 import chatbotImg from '@assets/auth/chatbot.png';
+import { useUser } from '../../api/useUser';
 
 const API_KEY = import.meta.env.VITE_OPENAI;
 
@@ -21,6 +22,8 @@ be a professional doctor with hight expertise.`,
 };
 
 function Chatbot({ newMessage }) {
+    const [{ subscription }] = useUser();
+    const isAccessible = subscription?.plan !== 'basic';
     const [messages, setMessages] = useState([
         {
             message: "Hello, I'm your helper bot. Ask me anything!",
@@ -102,6 +105,8 @@ function Chatbot({ newMessage }) {
                 setIsTyping(false);
             });
     }
+
+    if (!isAccessible) return null;
 
     if (!open) {
         return (

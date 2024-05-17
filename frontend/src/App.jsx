@@ -22,6 +22,7 @@ import ViewCheckup from './pages/cabinet/monitoring/view';
 import PregnancyCheckup from './pages/cabinet/checkups/pregnancy-checkup';
 import PostSurgeryCheckup from './pages/cabinet/checkups/post-surgery-checkup';
 import VitamineD3Checkup from './pages/cabinet/checkups/vitamine-d3';
+import SettingsPage from './pages/cabinet/settings';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -62,6 +63,7 @@ const router = createBrowserRouter(
             <Route element={<AuthenticatedRoutes />}>
                 <Route path="/cabinet" element={<Cabinet />} />
                 <Route path="/doctor/cabinet" element={<DoctorCabinet />} />
+                <Route path="/cabinet/settings" element={<SettingsPage />} />
             </Route>
         </>
     )

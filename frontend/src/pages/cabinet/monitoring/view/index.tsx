@@ -9,6 +9,8 @@ import ChatGPT from '../../../../components/Chatgpt';
 import monImg from '@assets/mon.svg';
 import { getRecommendationByKey, recommendations } from './recommendations';
 import { LineChart, Line, Tooltip, ResponsiveContainer } from 'recharts';
+import { useUser } from '../../../../api/useUser';
+import { toast } from 'react-hot-toast';
 
 const getMyCheckup = async (id) => {
     const { data } = await authApi.get(`/checkups/${id}`);
@@ -59,6 +61,9 @@ function CustomTooltip({ payload, label, active }) {
 const ViewCheckup = () => {
     const { id } = useParams();
     const [chartData, setChartData] = useState();
+    const [user] = useUser();
+    const subscription = user?.subscription;
+    const isAccessible = subscription?.plan !== 'basic';
 
     const { data: checkup, refetch } = useQuery({
         queryKey: ['checkups', id],
@@ -95,6 +100,11 @@ const ViewCheckup = () => {
     const [message, setMessage] = useState('');
 
     const handleNewMessage = (el, val) => {
+        if (!isAccessible) {
+            toast.error(
+                'You need to upgrade your plan to access this feature.'
+            );
+        }
         setMessage(
             `My value of ${el} is ${val}. What recommendation would you give me about this value?`
         );

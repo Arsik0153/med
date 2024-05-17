@@ -23,6 +23,7 @@ import {
     updateUser,
     createUser,
     getProfile,
+    changePassword,
 } from './src/user.js';
 app.get('/users', getUsers);
 app.get('/users/:id', getUserById);
@@ -30,6 +31,7 @@ app.delete('/users/:id', deleteUserById);
 app.put('/users/:id', updateUser);
 app.post('/users', createUser);
 app.get('/profile', authMiddleware, getProfile);
+app.put('/profile/password', authMiddleware, changePassword);
 
 import { createSurveyResult, getSurveyById, getSurveys } from './src/survey.js';
 app.get('/surveys', authMiddleware, getSurveys);
@@ -106,6 +108,15 @@ app.post('/checkups', createCheckup);
 app.get('/checkups/my', authMiddleware, getMyCheckups);
 app.delete('/checkups/:id', deleteCheckup);
 app.get('/checkups/:id', getSingleCheckup);
+
+import {
+    createSubscription,
+    getUserSubscription,
+    renewSubscription,
+} from './src/subscription.js';
+app.post('/users/:userId/subscription', createSubscription);
+app.get('/users/:userId/subscription', getUserSubscription);
+app.post('/users/:userId/subscription/renew', renewSubscription);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
