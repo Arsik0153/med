@@ -55,7 +55,7 @@ const MakeAppointmentModal = (props) => {
     });
 
     const { data: specialists } = useQuery({
-        queryKey: ['specialists', clinicId],
+        queryKey: ['specialists', clinicId, formData.specialist_type],
         queryFn: async () =>
             fetchSpecialists(formData.specialist_type, clinicId),
         enabled: !!formData.specialist_type && formData.specialist_type !== '0',
