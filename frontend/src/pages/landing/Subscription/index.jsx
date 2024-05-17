@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 const Subscription = () => {
@@ -22,7 +23,9 @@ const Subscription = () => {
                         <li>Data Security and Compliance</li>
                         <li>24/7 Customer Support</li>
                     </ul>
-                    <button>Start now</button>
+                    <Link to="/signup">
+                        <button>Start now</button>
+                    </Link>
                 </div>
 
                 <div className={styles.card}>
@@ -40,7 +43,9 @@ const Subscription = () => {
                             your health journey
                         </li>
                     </ul>
-                    <button>Start now</button>
+                    <Link to="/signup">
+                        <button>Start now</button>
+                    </Link>
                 </div>
 
                 <div className={styles.card}>
@@ -60,7 +65,9 @@ const Subscription = () => {
                         <li>Data Security and Compliance</li>
                         <li>24/7 Customer Support</li>
                     </ul>
-                    <button>Start now</button>
+                    <Link to="/signup">
+                        <button>Start now</button>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 const Footer = () => {
@@ -8,9 +9,9 @@ const Footer = () => {
                     <div className={styles.left}>
                         <ul>
                             <a href="">About us</a>
-                            <a href="">Membership</a>
-                            <a href="">Articles</a>
-                            <a href="">Recorces</a>
+                            <Link to="/membership">Membership</Link>
+                            <Link to="/articles">Articles</Link>
+                            <Link to="/resources">Resources</Link>
                         </ul>
                     </div>
                     <div className={styles.right}>Contact us</div>

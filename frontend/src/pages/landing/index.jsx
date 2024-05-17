@@ -7,10 +7,12 @@ import Embark from './Embark';
 import Subscription from './Subscription';
 import Footer from './Footer';
 import AboutUs from './AboutUs';
+import { ScrollRestoration } from 'react-router-dom';
 
 const LandingPage = () => {
     return (
         <div>
+            <ScrollRestoration />
             <div className={styles.wrapper}>
                 <div className={styles.overlay}></div>
                 <Header />

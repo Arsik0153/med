@@ -24,12 +24,18 @@ import PostSurgeryCheckup from './pages/cabinet/checkups/post-surgery-checkup';
 import VitamineD3Checkup from './pages/cabinet/checkups/vitamine-d3';
 import SettingsPage from './pages/cabinet/settings';
 import FaqPage from './pages/cabinet/faq';
+import Membership from './pages/membership';
+import Articles from './pages/articles';
+import Resources from './pages/resources';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route path="/">
                 <Route index element={<LandingPage />} />
+                <Route path="membership" element={<Membership />} />
+                <Route path="articles" element={<Articles />} />
+                <Route path="resources" element={<Resources />} />
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />
                 <Route path="/doctor/signup" element={<DoctorSignUp />} />

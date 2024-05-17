@@ -7,12 +7,14 @@ const Header = () => {
         <>
             <div className={`${styles.container} container`}>
                 <div className={styles.left}>
-                    <img src={logo} className={styles.logo} />
+                    <Link to="/">
+                        <img src={logo} className={styles.logo} />
+                    </Link>
                     <ul>
-                        <a href="#dha">What is DHA</a>
-                        <a href="#features">Features</a>
-                        <a href="#aboutus">About us</a>
-                        <a href="#pricing">Pricing</a>
+                        <a href="/#dha">What is DHA</a>
+                        <a href="/#features">Features</a>
+                        <a href="/#aboutus">About us</a>
+                        <a href="/#pricing">Pricing</a>
                     </ul>
                 </div>
                 <div className={styles.controls}>
