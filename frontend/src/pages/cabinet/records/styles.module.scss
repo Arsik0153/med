@@ -1,0 +1,64 @@
+.title {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+
+    span {
+        color: #0558a5;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 30px;
+    }
+}
+
+.card {
+    background: #fafcff;
+    box-shadow: 0px 10px 90px rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    margin-top: 30px;
+    overflow: auto;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        margin-bottom: 100px;
+    }
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 20px;
+
+    th {
+        text-align: left;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #007df0;
+        color: white;
+    }
+
+    td,
+    th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        min-width: 160px;
+    }
+    td {
+        font-weight: 500;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    tr > th:first-child,
+    tr > td:first-child {
+        padding-left: 30px;
+    }
+    td a {
+        color: #5f5f5f;
+        margin-left: 20px;
+    }
+}

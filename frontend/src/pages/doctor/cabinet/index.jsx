@@ -143,8 +143,6 @@ const DoctorCabinet = () => {
 
     return (
         <LayoutDoctor>
-            <ChatGPT />
-
             <h1 className={styles.title}>
                 Welcome, <span>{user.name}</span>
             </h1>

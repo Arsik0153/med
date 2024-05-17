@@ -29,7 +29,8 @@
         padding: 50px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 100px;
+        justify-items: center;
+        gap: 20px;
 
         @media (max-width: 768px) {
             gap: 30px;
@@ -37,14 +38,29 @@
         }
 
         .circle {
-            width: 200px;
-            height: 200px;
-            border: 2px solid #82aff3;
-            border-radius: 100%;
+            width: 400px;
+            height: 150px;
+            border-radius: 20px;
+            border: 1px solid transparent;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0 auto;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+                rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+            font-weight: 500;
+            gap: 20px;
+            transition: 0.2s ease-in;
+
+            img {
+                width: 40px;
+                height: 40px;
+            }
+
+            &:hover {
+                border: 1px solid #007df0;
+                transition: 0.2s ease-in;
+            }
 
             @media (max-width: 768px) {
                 width: 150px;

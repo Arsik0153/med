@@ -10,6 +10,10 @@ import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import ChatGPT from '../../components/Chatgpt';
+import analysisIcon from '@assets/cabinet/analysis.svg';
+import appointmentIcon from '@assets/cabinet/appointment.svg';
+import monitoringIcon from '@assets/cabinet/monitoring.svg';
+import doctorIcon from '@assets/cabinet/doctor.svg';
 
 const fetchAppointments = async (date) => {
     try {
@@ -56,7 +60,11 @@ const Cabinet = () => {
     const [user] = useUser();
     const [currentDate, setCurrentDate] = useState(new Date());
     // console.log('currentDate', currentDate);
-    const { data: appointments, refetch } = useQuery({
+    const {
+        data: appointments,
+        refetch,
+        isLoading,
+    } = useQuery({
         queryKey: ['appointments', currentDate],
         queryFn: () => fetchAppointments(currentDate),
 
@@ -105,16 +113,28 @@ const Cabinet = () => {
             <div className={styles.card}>
                 <div className={styles.left}>
                     <Link to="/cabinet/checkups">
-                        <div className={styles.circle}>Check upps/Analysis</div>
+                        <div className={styles.circle}>
+                            <img src={analysisIcon} alt="" />
+                            Check upps/Analysis
+                        </div>
                     </Link>
                     <Link to="/cabinet/appointment">
                         <div className={styles.circle}>
+                            <img src={doctorIcon} alt="" />
                             Doctor's appointment
                         </div>
                     </Link>
-                    <div className={styles.circle}>Appointment records</div>
+                    <Link to="/cabinet/records">
+                        <div className={styles.circle}>
+                            <img src={appointmentIcon} alt="" />
+                            Appointment records
+                        </div>
+                    </Link>
                     <Link to="/cabinet/monitoring">
-                        <div className={styles.circle}>Monitoring</div>
+                        <div className={styles.circle}>
+                            <img src={monitoringIcon} alt="" />
+                            Monitoring
+                        </div>
                     </Link>
                 </div>
                 <div className={`${styles.right} full-calendar`}>
@@ -163,6 +183,7 @@ const Cabinet = () => {
                         {appointments?.length === 0 && (
                             <p>No appointments for this date</p>
                         )}
+                        {isLoading && <p>Loading...</p>}
                     </div>
                 </div>
             </div>

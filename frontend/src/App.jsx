@@ -27,6 +27,7 @@ import FaqPage from './pages/cabinet/faq';
 import Membership from './pages/membership';
 import Articles from './pages/articles';
 import Resources from './pages/resources';
+import RecordsPage from './pages/cabinet/records';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
                 <Route path="/doctor/signup" element={<DoctorSignUp />} />
                 <Route path="cabinet/faq" element={<FaqPage />} />
                 <Route path="cabinet/appointment" element={<Appointment />} />
+                <Route path="cabinet/records" element={<RecordsPage />} />
                 <Route path="cabinet/checkups" element={<Checkups />} />
                 <Route
                     path="cabinet/checkups/full-checkup"

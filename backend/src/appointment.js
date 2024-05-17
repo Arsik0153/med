@@ -246,3 +246,23 @@ export const getDoctorNextAppointments = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+// get appointment by user id in token
+export const getAppointmentsByUser = async (req, res) => {
+    try {
+        const { id } = req.user;
+        const appointments = await prisma.appointment.findMany({
+            where: {
+                patientId: id,
+            },
+            include: {
+                clinic: true,
+                doctor: true,
+                patient: true,
+            },
+        });
+        res.status(200).json(appointments);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};

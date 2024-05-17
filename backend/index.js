@@ -65,8 +65,10 @@ import {
     getAppointmentsByPatientInMonth,
     getAppointmentsByDoctorInMonth,
     getAppointmentsByDateDoctor,
+    getAppointmentsByUser,
 } from './src/appointment.js';
 app.get('/appointments', getAllAppointments);
+app.get('/appointments/user', authMiddleware, getAppointmentsByUser);
 app.get('/appointments/:id', getAppointment);
 app.post('/appointments', createAppointment);
 app.put('/appointments/:id', updateAppointment);
