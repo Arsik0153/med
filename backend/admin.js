@@ -7,7 +7,7 @@ import { authenticateAdmin } from './src/utils/authMiddleware.js';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 import bcrypt from 'bcryptjs';
-import { componentLoader } from './src/components/index.js';
+import { componentLoader, Components } from './src/components/index.js';
 
 const hash = async (password) => {
     return await bcrypt.hash(password, 10);
@@ -16,6 +16,9 @@ const hash = async (password) => {
 AdminJS.registerAdapter({ Database, Resource });
 
 const adminOptions = {
+    dashboard: {
+        component: Components.Dashboard,
+    },
     componentLoader,
     resources: [
         {
@@ -118,5 +121,7 @@ export const adminRouter = AdminJSExpress.buildAuthenticatedRouter(
         name: 'adminjs',
     }
 );
+
+// admin.watch();
 
 export default admin;
