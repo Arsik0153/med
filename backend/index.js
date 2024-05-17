@@ -118,6 +118,17 @@ app.post('/users/:userId/subscription', createSubscription);
 app.get('/users/:userId/subscription', getUserSubscription);
 app.post('/users/:userId/subscription/renew', renewSubscription);
 
+import {
+    createConctact,
+    deleteContact,
+    getAllContacts,
+    getContactById,
+} from './src/contact.js';
+app.post('/contacts', createConctact);
+app.get('/contacts', getAllContacts);
+app.get('/contacts/:id', getContactById);
+app.delete('/contacts/:id', deleteContact);
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
     console.log(

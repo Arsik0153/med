@@ -42,9 +42,9 @@ const Layout = ({ children }) => {
                         <Link to="/cabinet">
                             <img src={logoImg} alt="" />
                         </Link>
-                        <Link to="/about-us" className={styles.innerLink}>
+                        {/* <Link to="/about-us" className={styles.innerLink}>
                             About us
-                        </Link>
+                        </Link> */}
                         <Link to="/cabinet/faq" className={styles.innerLink}>
                             FAQ
                         </Link>

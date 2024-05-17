@@ -87,6 +87,18 @@ const adminOptions = {
             resource: { model: getModelByName('Appointment'), client: prisma },
             options: {},
         },
+        {
+            resource: { model: getModelByName('Contact'), client: prisma },
+            options: {},
+        },
+        {
+            resource: { model: getModelByName('Checkup'), client: prisma },
+            options: {},
+        },
+        {
+            resource: { model: getModelByName('Subscription'), client: prisma },
+            options: {},
+        },
     ],
 };
 

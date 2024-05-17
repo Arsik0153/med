@@ -193,6 +193,13 @@ async function main() {
                 '{"vitamin_d3":{"value":30,"score":60},"vitamin_a":{"value":500,"score":55},"vitamin_c":{"value":25,"score":33}}',
             date: '2024-05-05T00:00:00.000Z',
         },
+        {
+            patientId: 1,
+            name: 'Full checkup',
+            content:
+                '{"vitamin_d3":{"value":40,"score":60},"vitamin_a":{"value":500,"score":55},"vitamin_c":{"value":25,"score":33}}',
+            date: '2024-05-05T00:00:00.000Z',
+        },
     ];
 
     for (const checkupData of checkupsData) {
