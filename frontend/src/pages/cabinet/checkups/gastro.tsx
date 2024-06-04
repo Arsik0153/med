@@ -34,17 +34,16 @@ const systemMessage = {
                 score: 100,
             }
         }
-        Since vitamin values I provided as example are all the norms for an adult person, every aspect is 100. 
-        But, for instance, vitamin_a I provided would be 450, which is pretty abnormal, so the value for it would be 50, because norm for an adult is 900, so 450 is half of the norm.
         "Value" is just a value that I provided.
 
-        Gastric enzyme secretion coefficient 59.847 - 65.234
-        Gastric peristaltic function coefficient 58.425 - 61.213
+        There's range of norms (in brackers is the name of parameter that i will give):
+        enzyme: 59.847 - 65.234
+        peristaltic: 58.425 - 61.213
         Gastric absorption coefficient 34.367 - 35.642
-        Peristaltic function coefficient of the small intestine 133.437 - 140.476
-        Absorption coefficient of the small intestine 3.572 - 6.483
+        absorption: 133.437 - 140.476
+        coefficient_small_intestine: 3.572 - 6.483
 
-        Give me score of how much value is close to normal diapason. For example, Blood viscosity norm diapason is 48,264 - 65,371 and if i provide value 50.012 it should give me 100 which is 100%, because provided value is in norm diapason. if i give 56,749 - 67,522 and value is 43.012, it should give me around 75%, therefore you should give me 75
+        Give me score of how much value is close to normal range. For example, coefficient_small_intestine norm range is 3.572 - 6.483 and if i provide value 4.012 it should give me 100 which is 100%, because provided value is in norm range. if i give value is 3.012, it should give me around 75%, therefore you should give me 75. You can consider dots and commas as decimal separator in input, for example 0.05 equals to 0,05.
     `,
 };
 

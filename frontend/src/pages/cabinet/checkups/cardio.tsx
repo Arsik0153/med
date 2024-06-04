@@ -34,18 +34,16 @@ const systemMessage = {
                 score: 100,
             }
         }
-        Since vitamin values I provided as example are all the norms for an adult person, every aspect is 100. 
-        But, for instance, vitamin_a I provided would be 450, which is pretty abnormal, so the value for it would be 50, because norm for an adult is 900, so 450 is half of the norm.
         "Value" is just a value that I provided.
 
-        Also, there's data of norms:
-        Blood viscosity 48.264 - 65.371
-        Total Cholesterol 56.749 - 67.522
-        Lipids 0.481 - 1.043
-        Vascular resistance 0.327 - 0.937
-        Elasticity of blood vessels 1.672 - 1.978
+        There's range of norms (in brackers is the name of parameter that i will give):
+        blood_viscosity: 48.264 - 65.371
+        cholesterol: 56.749 - 67.522
+        Lipids: 0.481 - 1.043
+        resistance:  0.327 - 0.937
+        elasticity: 1.672 - 1.978
 
-        Give me score of how much value is close to normal diapason. For example, Blood viscosity norm diapason is 48,264 - 65,371 and if i provide value 50.012 it should give me 100 which is 100%, because provided value is in norm diapason. if i give 56,749 - 67,522 and value is 43.012, it should give me around 75%, therefore you should give me 75
+        Give me score of how much value is close to normal range. For example, Blood viscosity norm range is 48,264 - 65,371 and if i provide value 50.012 it should give me 100 which is 100%, because provided value is in norm range. if i give 56,749 - 67,522 and value is 43.012, it should give me around 75%, therefore you should give me 75. You can consider dots and commas as decimal separator in input, for example 0.05 equals to 0,05.
     `,
 };
 

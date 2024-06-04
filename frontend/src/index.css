@@ -149,3 +149,23 @@ button {
     margin-top: 20px;
     width: fit-content;
 }
+
+.info-suc {
+    padding: 20px;
+    border: 1px solid #6adb47;
+    background-color: #c8ffb7;
+    border-radius: 15px;
+    margin-top: 20px;
+    width: fit-content;
+    margin-bottom: 50px;
+}
+
+.info-err {
+    padding: 20px;
+    border: 1px solid #ff0000;
+    background-color: #ffcccc;
+    border-radius: 15px;
+    margin-top: 20px;
+    width: fit-content;
+    margin-bottom: 50px;
+}

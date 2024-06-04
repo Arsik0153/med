@@ -37,6 +37,20 @@ function calculatePercentage(percentage, total) {
     return result;
 }
 
+function calculateAverageScore(data) {
+    let totalScore = 0;
+    let count = 0;
+
+    for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+            totalScore += data[key].score;
+            count++;
+        }
+    }
+
+    return count === 0 ? 0 : totalScore / count;
+}
+
 export const KEYS = {
     vitamin_d3: 'Vitamine D3',
     vitamin_d2: 'Vitamine D2',
@@ -147,6 +161,7 @@ const ViewCheckup = () => {
     };
 
     const content = JSON.parse(checkup?.content || '{}');
+    const score = calculateAverageScore(content);
 
     if (static_names.includes(checkup?.name)) {
         return (
@@ -154,14 +169,30 @@ const ViewCheckup = () => {
                 <ChatGPT newMessage={message} />
                 <h1 className={styles.title}>Monitoring</h1>
                 <div className={styles.card}>
-                    <div style={{ marginBottom: 100 }}>
-                        <h2 style={{ marginTop: 50 }}>Recommendations</h2>
-                        <p>{getStaticByKey(checkup.name) || ''}</p>
-                        <div className="info-rec">
-                            All recommendations are for informational purposes
-                            only. For complete information, consult your doctor.
+                    {score > 60 && (
+                        <div className="info-suc">
+                            Your checkup indicators are satisfactory. Keep up
+                            the good work.
                         </div>
-                    </div>
+                    )}
+                    {score < 60 && score > 40 && (
+                        <div style={{ marginBottom: 100 }}>
+                            <h2 style={{ marginTop: 50 }}>Recommendations</h2>
+                            <p>{getStaticByKey(checkup.name) || ''}</p>
+                            <div className="info-rec">
+                                All recommendations are for informational
+                                purposes only. For complete information, consult
+                                your doctor.
+                            </div>
+                        </div>
+                    )}
+
+                    {score < 40 && (
+                        <div className="info-err">
+                            Your checkup performance is not satisfactory.
+                            Contact a specialist for help.
+                        </div>
+                    )}
 
                     <div className={styles.left}>
                         {Object.keys(content).map((el) => (
@@ -212,32 +243,6 @@ const ViewCheckup = () => {
                                             />
                                         </svg>
                                     </div>
-                                    <button
-                                        onClick={() =>
-                                            handleNewMessage(
-                                                KEYS[el],
-                                                content[el].value
-                                            )
-                                        }
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: 10,
-                                            marginTop: 100,
-                                        }}
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 25 25"
-                                            height="30px"
-                                        >
-                                            <path
-                                                d="M18.5 5a5.497 5.497 0 0 1-5.5 5.5 5.49 5.49 0 0 1 5.5 5.5 5.497 5.497 0 0 1 5.5-5.5A5.497 5.497 0 0 1 18.5 5zM6.5 12A5.497 5.497 0 0 1 12 6.5 5.497 5.497 0 0 1 6.5 1 5.497 5.497 0 0 1 1 6.5a5.489 5.489 0 0 1 3.1.95A5.5 5.5 0 0 1 6.5 12zM10.5 13A5.497 5.497 0 0 1 5 18.5a5.49 5.49 0 0 1 5.5 5.5 5.497 5.497 0 0 1 5.5-5.5 5.497 5.497 0 0 1-5.5-5.5z"
-                                                style={{ fill: '#fff' }}
-                                            />
-                                        </svg>
-                                        Get AI recommendation
-                                    </button>
                                 </div>
                                 <div>
                                     <h2 style={{ marginBottom: 30 }}>
