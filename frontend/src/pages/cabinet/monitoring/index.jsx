@@ -34,6 +34,20 @@ const Monitoring = () => {
 
             <div className={styles.card}>
                 <div className={styles.left}>
+                    {checkups?.length === 0 && (
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                height: '100%',
+                            }}
+                        >
+                            <h2 style={{ margin: 0, opacity: 0.2 }}>
+                                There are no monitoring records yet
+                            </h2>
+                        </div>
+                    )}
                     <div className={styles.left}>
                         <ul>
                             {checkups?.map((checkup) => (

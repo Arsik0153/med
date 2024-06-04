@@ -11,14 +11,12 @@ import {
 import { styled } from '@adminjs/design-system/styled-components';
 import axios from 'axios';
 import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
     ResponsiveContainer,
+    LineChart,
+    AreaChart,
+    Area,
+    XAxis,
+    Tooltip,
 } from 'recharts';
 
 const Dashboard = () => {
@@ -99,19 +97,40 @@ const Dashboard = () => {
                     <Card width={1} m="lg">
                         <H2>Checkups by date</H2>
                         <ResponsiveContainer width="100%" height={400}>
-                            <LineChart
+                            <AreaChart
                                 width={1000}
                                 height={400}
                                 data={chartData}
                             >
+                                <defs>
+                                    <linearGradient
+                                        id="colorFill"
+                                        x1="0"
+                                        y1="0"
+                                        x2="0"
+                                        y2="1"
+                                    >
+                                        <stop
+                                            offset="5%"
+                                            stopColor="#007df0"
+                                            stopOpacity={0.8}
+                                        />
+                                        <stop
+                                            offset="95%"
+                                            stopColor="#007df0"
+                                            stopOpacity={0}
+                                        />
+                                    </linearGradient>
+                                </defs>
                                 <XAxis dataKey="date" />
                                 <Tooltip />
-                                <Line
+                                <Area
                                     type="monotone"
                                     dataKey="count"
                                     stroke="#007df0"
+                                    fill="url(#colorFill)"
                                 />
-                            </LineChart>
+                            </AreaChart>
                         </ResponsiveContainer>
                     </Card>
                 </Box>

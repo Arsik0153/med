@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 import heroImg from '@assets/landing/hero.png';
 
@@ -15,7 +16,9 @@ const Hero = () => {
                     Analyst, and we believe that you are about to embark on an
                     exciting journey of innovation and impact.
                 </p>
-                <button className={styles.button}>Get started</button>
+                <Link to="/login">
+                    <button className={styles.button}>Get started</button>
+                </Link>
             </div>
             <div className={styles.right}>
                 <img src={heroImg} alt="" />

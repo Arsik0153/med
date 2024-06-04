@@ -96,7 +96,8 @@ const ViewCheckup = () => {
     const [chartData, setChartData] = useState();
     const [user] = useUser();
     const subscription = user?.subscription;
-    const isAccessible = subscription?.plan !== 'basic';
+    const isAccessible = subscription && subscription?.plan !== 'basic';
+    console.log('is', isAccessible);
 
     const { data: checkup, refetch } = useQuery({
         queryKey: ['checkups', id],
@@ -138,6 +139,7 @@ const ViewCheckup = () => {
             toast.error(
                 'You need to upgrade your plan to access this feature.'
             );
+            return;
         }
         setMessage(
             `My value of ${el} is ${val}. What recommendation would you give me about this value?`
