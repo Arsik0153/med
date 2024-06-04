@@ -35,6 +35,12 @@
         @media (max-width: 768px) {
             gap: 30px;
             padding: 20px 10px;
+            grid-template-columns: 1fr;
+            gap: 10px;
+
+            a {
+                width: 100%;
+            }
         }
 
         .circle {
@@ -63,8 +69,7 @@
             }
 
             @media (max-width: 768px) {
-                width: 150px;
-                height: 150px;
+                width: 100%;
                 text-align: center;
             }
         }

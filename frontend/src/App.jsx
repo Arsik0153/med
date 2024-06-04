@@ -28,6 +28,9 @@ import Membership from './pages/membership';
 import Articles from './pages/articles';
 import Resources from './pages/resources';
 import RecordsPage from './pages/cabinet/records';
+import CardioCheckup from './pages/cabinet/checkups/cardio';
+import GastrointestinalCheckup from './pages/cabinet/checkups/gastro';
+import LiverCheckup from './pages/cabinet/checkups/liver';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -63,6 +66,18 @@ const router = createBrowserRouter(
                 <Route
                     path="cabinet/checkups/vitamine-d3-checkup"
                     element={<VitamineD3Checkup />}
+                />
+                <Route
+                    path="cabinet/checkups/cardio"
+                    element={<CardioCheckup />}
+                />
+                <Route
+                    path="cabinet/checkups/gastro"
+                    element={<GastrointestinalCheckup />}
+                />
+                <Route
+                    path="cabinet/checkups/liver"
+                    element={<LiverCheckup />}
                 />
                 <Route path="cabinet/monitoring" element={<Monitoring />} />
                 <Route

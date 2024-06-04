@@ -52,3 +52,30 @@ export const recommendations = [
 export const getRecommendationByKey = (key) => {
     return recommendations.find((rec) => rec.key === key)?.text;
 };
+
+const staticRecommendations = [
+    {
+        key: 'The cardiovascular system',
+        text: 'Reduce stress, maintain mental balance, the law of life.  Eat organic lipids such as: black mushroom, mushrooms, vegetables, fruits,  Eat foods high in cholesterol, high in salt in food, high in  fats',
+    },
+    {
+        key: 'Gastrointestinal function',
+        text: 'Eat non-stimulating and digestible food, vegetables, eating on time, slowly, in small portions, eating to relax, maintain good rest        ',
+    },
+    {
+        key: 'Liver condition',
+        text: 'Eat more vitamin B, C, E, rich foods such as black mushroom, mushroom food, eat fried food, quit alcohol, spicy',
+    },
+    {
+        key: 'Kidney function',
+        text: 'Eat spicy hot dishes such as chili, pepper, ginger, onion, garlic, leek, lamb, fish, shrimp, eel and so on.',
+    },
+    {
+        key: 'Rheumatoid bone diseases',
+        text: 'White bread and sweets are contraindicated, it is advisable to reduce the consumption of meat, sweet fruits (bananas), vegetables, fermented dairy products are very useful. It is necessary to reduce the consumption of strong tea and coffee. Alcohol is also banned.',
+    },
+];
+
+export const getStaticByKey = (key) => {
+    return staticRecommendations.find((rec) => rec.key === key)?.text;
+};

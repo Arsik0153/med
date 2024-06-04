@@ -43,6 +43,24 @@ const Checkups = () => {
                                 <button>Continue</button>
                             </Link>
                         </li>
+                        <li>
+                            The cardiovascular system{' '}
+                            <Link to="cardio">
+                                <button>Continue</button>
+                            </Link>
+                        </li>
+                        <li>
+                            Gastrointestinal function{' '}
+                            <Link to="gastro">
+                                <button>Continue</button>
+                            </Link>
+                        </li>
+                        <li>
+                            Liver condition{' '}
+                            <Link to="liver">
+                                <button>Continue</button>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
                 <div className={styles.right}>
